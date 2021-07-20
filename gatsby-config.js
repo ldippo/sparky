@@ -1,4 +1,5 @@
-module.exports = {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+module.exports = (_options) => ({
 	siteMetadata: {
 		title: 'Sparky',
 		siteUrl: 'https://compassionate-galileo-46fbff.netlify.app/',
@@ -72,4 +73,4 @@ module.exports = {
 		'gatsby-plugin-netlify',
 		'gatsby-plugin-extract-schema',
 	],
-};
+});
