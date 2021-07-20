@@ -1,7 +1,7 @@
-import { createFilePath } from "gatsby-source-filesystem";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { createFilePath } = require("gatsby-source-filesystem");
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function createPages({ actions, graphql }) {
+exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
 
   return graphql(`
@@ -56,9 +56,9 @@ export function createPages({ actions, graphql }) {
       });
     });
   });
-}
+};
 
-export function onCreateNode({ node, actions, getNode }) {
+exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
@@ -69,4 +69,4 @@ export function onCreateNode({ node, actions, getNode }) {
       value,
     });
   }
-}
+};
