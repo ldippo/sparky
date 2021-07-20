@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+html,
+body,
+#___gatsby,
+#gatsby-focus-wrapper,
+#preview-pane,
+.frame-content {
+	width: 100%;
+	margin: 0;
+	font-family: 'Open Sans', sans-serif;
+}
+
+html {
+	font-size: 12px;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+@media screen and (min-width: 768px) {
+  html {font-size: 14px;}
+}

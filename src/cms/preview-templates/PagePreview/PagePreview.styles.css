@@ -1,0 +1,15 @@
+/* CMS Preview-specific styling */
+iframe#preview-pane {
+	position: relative;
+}
+
+.frame-content .SubGrid .SubGridInfo {
+	display: block;
+}
+
+@media (min-width: 768px) {
+	.frame-content .SubGrid .SubGridInfo {
+		display: flex;
+		padding-left: 50px;
+	}
+}
