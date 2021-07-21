@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-sparky",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Sparky",
   "author": "ldippo",
@@ -57,9 +57,7 @@
     "netlify-cms": "^2.10.122",
     "netlify-cms-app": "^2.15.2",
     "path-browserify": "^1.0.1",
-    "react": "^17.0.1",
     "react-device-detect": "^1.17.0",
-    "react-dom": "^17.0.1",
     "react-google-recaptcha": "^2.1.0",
     "react-helmet": "^6.1.0",
     "react-markdown": "^6.0.2",
