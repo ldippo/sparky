@@ -11,103 +11,124 @@ import SideNav from './SideNav';
 import Carousel from './Carousel';
 import SplashView from './SplashView';
 import Navigation from './Navigation';
-import { AppContainer, MainContainer, ContentContainer, } from './Containers/Containers.styles';
+import {
+  AppContainer,
+  MainContainer,
+  ContentContainer,
+} from './Containers/Containers.styles';
 
 const Layout = React.memo(function Layout({
-	navData,
-	sectionData,
-	templateKey,
+  navData,
+  sectionData,
+  templateKey,
 }: {
-	navData: { label: string; path: string }[];
-	sectionData: SectionFragment[];
-	templateKey: string;
+  navData: { label: string; path: string }[];
+  sectionData: SectionFragment[];
+  templateKey: string;
 }) {
-	const [selectedSection, setSelectedSection] = React.useState(0);
+  const [selectedSection, setSelectedSection] = React.useState(0);
 
-	const mediaUrl = React.useMemo(
-		() => sectionData[selectedSection]?.slideMedia?.publicURL,
-		[sectionData, selectedSection]
-	);
-	const { data: colorData, loading } = useColor(mediaUrl, 'hex');
+  const mediaUrl = React.useMemo(
+    () => sectionData[selectedSection]?.slideMedia?.publicURL,
+    [sectionData, selectedSection]
+  );
+  const { data: colorData, loading } = useColor(mediaUrl, 'hex');
 
-	const [contrastColors, setContrastColors] = React.useState(['white', 'black']);
+  const [contrastColors, setContrastColors] = React.useState([
+    'white',
+    'black',
+  ]);
 
-	React.useEffect(() => {
-		if (!mediaUrl) setContrastColors(['white', 'black']);
-		else if (colorData && !loading) setContrastColors(pickTextColor(colorData, 'white', 'black'));
-	}, [colorData, loading, mediaUrl]);
+  React.useEffect(() => {
+    if (!mediaUrl) setContrastColors(['white', 'black']);
+    else if (colorData && !loading)
+      setContrastColors(pickTextColor(colorData, 'white', 'black'));
+  }, [colorData, loading, mediaUrl]);
 
-	const navItems = React.useMemo(
-		() =>
-			sectionData.map(({ title }, i) => ({
-				onClick() {
-					setSelectedSection(i);
-					carouselRef.current.changeSlide(i - selectedSection);
-				},
-				text: title,
-			})),
-		[sectionData, selectedSection]
-	);
-	const sectionItems = React.useMemo(
-		() =>
-			sectionData.map(({ title, body, slideMedia, titleSuperText, slideVideo, actionButton }) => ({
-				title,
-				superText: titleSuperText,
-				imageSrc: slideMedia?.publicURL,
-				videoSrc: slideVideo,
-				body,
-				actionButton: actionButton,
-			})),
-		[sectionData]
-	);
+  const navItems = React.useMemo(
+    () =>
+      sectionData.map(({ title }, i) => ({
+        onClick() {
+          setSelectedSection(i);
+          carouselRef.current.changeSlide(i - selectedSection);
+        },
+        text: title,
+      })),
+    [sectionData, selectedSection]
+  );
+  const sectionItems = React.useMemo(
+    () =>
+      sectionData.map(
+        ({
+          title,
+          body,
+          slideMedia,
+          titleSuperText,
+          slideVideo,
+          actionButton,
+        }) => ({
+          title,
+          superText: titleSuperText,
+          imageSrc: slideMedia?.publicURL,
+          videoSrc: slideVideo,
+          body,
+          actionButton: actionButton,
+        })
+      ),
+    [sectionData]
+  );
 
-	const carouselRef = React.useRef<any>();
-	const isTiny = useMediaQuery('only screen and (max-width: 768px)');
+  const carouselRef = React.useRef<any>();
+  const isTiny = useMediaQuery('only screen and (max-width: 768px)');
 
-	return (
-		<AppContainer templateKey={templateKey}>
-			<Navigation navData={navData} contrastColors={contrastColors} />
-			<MainContainer>
-				{templateKey === 'home' ? (
-					<SplashView
-						videoSrc="http://www.vft-solutions.com/wp-content/themes/smartbox/images/homepage2016/VFT_Animation_0.7_720_med.mp4"
-						overlayColor="rgba(0,0,0,0.65)"
-					/>
-				) : templateKey === 'cardPage' ? (
-					<ContactForm />
-				) : (
-					<>
-						<SideNav selectedIdx={selectedSection} navItems={navItems} contrastColors={contrastColors} />
+  return (
+    <AppContainer templateKey={templateKey}>
+      <Navigation navData={navData} contrastColors={contrastColors} />
+      <MainContainer>
+        {templateKey === 'home' ? (
+          <SplashView
+            videoSrc="static/img/vft_animation_0.7_720_med.mp4"
+            overlayColor="rgba(0,0,0,0.65)"
+          />
+        ) : templateKey === 'cardPage' ? (
+          <ContactForm />
+        ) : (
+          <>
+            <SideNav
+              selectedIdx={selectedSection}
+              navItems={navItems}
+              contrastColors={contrastColors}
+            />
 
-						<ContentContainer templateKey={templateKey} isTiny={isTiny}>
-							{sectionItems.length && !isTiny ? (
-								<Carousel ref={carouselRef} curPage={selectedSection}>
-									{sectionItems.map((section) => (
-										<SectionItem section={section} key={section.title} />
-									))}
-								</Carousel>
-							) : sectionItems.length ? (
-								sectionItems.map((section) => (
-									<SectionItem section={section} key={section.title} />
-								))
-							) : (
-								<div />
-							)}
-						</ContentContainer>
-					</>
-				)}
-			</MainContainer>
-			<Footer />
-		</AppContainer>
-	);
+            <ContentContainer templateKey={templateKey} isTiny={isTiny}>
+              {sectionItems.length && !isTiny ? (
+                <Carousel ref={carouselRef} curPage={selectedSection}>
+                  {sectionItems.map((section) => (
+                    <SectionItem section={section} key={section.title} />
+                  ))}
+                </Carousel>
+              ) : sectionItems.length ? (
+                sectionItems.map((section) => (
+                  <SectionItem section={section} key={section.title} />
+                ))
+              ) : (
+                <div />
+              )}
+            </ContentContainer>
+          </>
+        )}
+      </MainContainer>
+      <Footer />
+    </AppContainer>
+  );
 });
 export default Layout;
 
 function pickTextColor(bgColor: string, lightColor: string, darkColor: string) {
-	const color = bgColor.charAt(0) === '#' ? bgColor.substring(1, 7) : bgColor;
-	const r = parseInt(color.substring(0, 2), 16); // hexToR
-	const g = parseInt(color.substring(2, 4), 16); // hexToG
-	const b = parseInt(color.substring(4, 6), 16); // hexToB
-	const light = r * 0.299 + g * 0.587 + b * 0.114 > 100;
-	return light ? [darkColor, lightColor] : [lightColor, darkColor];
+  const color = bgColor.charAt(0) === '#' ? bgColor.substring(1, 7) : bgColor;
+  const r = parseInt(color.substring(0, 2), 16); // hexToR
+  const g = parseInt(color.substring(2, 4), 16); // hexToG
+  const b = parseInt(color.substring(4, 6), 16); // hexToB
+  const light = r * 0.299 + g * 0.587 + b * 0.114 > 100;
+  return light ? [darkColor, lightColor] : [lightColor, darkColor];
 }
