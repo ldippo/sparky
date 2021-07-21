@@ -87,7 +87,7 @@ const Layout = React.memo(function Layout({
       <MainContainer>
         {templateKey === 'home' ? (
           <SplashView
-            videoSrc="static/img/vft_animation_0.7_720_med.mp4"
+            videoSrc="https://vftassets.s3.amazonaws.com/VFT_Animation.mp4"
             overlayColor="rgba(0,0,0,0.65)"
           />
         ) : templateKey === 'cardPage' ? (
