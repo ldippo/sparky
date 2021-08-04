@@ -14,7 +14,6 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "gen:gql": "graphql-codegen --config codegen.yml",
-    "prepare": "husky install",
     "lint": "eslint **/*.{js,jsx,ts,tsx}"
   },
   "dependencies": {
