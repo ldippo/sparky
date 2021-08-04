@@ -17,6 +17,7 @@ import {
 import TextTitle from '../TextTitle/TextTitle.styles';
 import BGVideo from '../BGVideo/BGVideo';
 import { CTAButton } from '../CTAButton/CTAButton.styles';
+import { navigate } from 'gatsby';
 
 const motionProps: MotionProps[] = [0, 1, 2, 3].map((x) => ({
   transition: {
@@ -36,7 +37,12 @@ const SectionItem = ({ section }) => {
   );
 
   function clickCTA() {
-    window.open(`${section.actionButton.url}`, '_blank');
+    const isAppLink = section.actionButton.url.charAt(0) === '/';
+    if (isAppLink) {
+      navigate(section.actionButton.url);
+    } else {
+      window.open(`${section.actionButton.url}`, '_blank');
+    }
   }
 
   return (
