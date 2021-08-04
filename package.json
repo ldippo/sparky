@@ -51,9 +51,7 @@
     "gatsby-source-filesystem": "^3.2.0",
     "gatsby-transformer-remark": "^4.1.0",
     "gatsby-transformer-sharp": "^3.2.0",
-    "graphql": "^15.5.0",
     "lodash": "^4.17.21",
-    "netlify-cms": "^2.10.122",
     "netlify-cms-app": "^2.15.2",
     "path-browserify": "^1.0.1",
     "react-device-detect": "^1.17.0",
@@ -81,11 +79,13 @@
     "lint-staged": "^11.0.1",
     "prettier": "^2.3.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "graphql": "^15.5.0"
   },
   "peerDependencies": {
     "gatsby": "^3.2.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "graphql": "^15.5.0"
   }
 }
