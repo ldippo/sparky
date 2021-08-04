@@ -1,6 +1,6 @@
 {
   "name": "gatsby-theme-sparky",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": true,
   "description": "Sparky",
   "author": "ldippo",
@@ -75,17 +75,17 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.24.0",
     "gatsby": "^3.2.1",
+    "graphql": "^15.5.0",
     "husky": "^7.0.1",
     "lint-staged": "^11.0.1",
     "prettier": "^2.3.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "graphql": "^15.5.0"
+    "react-dom": "^17.0.1"
   },
   "peerDependencies": {
     "gatsby": "^3.2.1",
+    "graphql": "^15.5.0",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "graphql": "^15.5.0"
+    "react-dom": "^17.0.1"
   }
 }
