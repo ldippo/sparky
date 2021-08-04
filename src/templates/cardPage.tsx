@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 
-import { PageQuery, SectionFragment } from './page.gql';
+import { PageQuery, SectionFragment } from './queryInfo.gql';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function CardPage(props: {
   data: PageQuery;
@@ -36,38 +35,3 @@ export default function CardPage(props: {
     />
   );
 }
-
-export const query = graphql`
-  fragment Section on MarkdownRemarkFrontmatterSections {
-    body
-    title
-    slideMedia {
-      absolutePath
-      publicURL
-    }
-    slideVideo
-    titleSuperText
-    actionButton {
-      url
-      text
-    }
-  }
-  query CardPage {
-    pageData: allMarkdownRemark {
-      edges {
-        node {
-          frontmatter {
-            templateKey
-            title
-            path
-            order
-            navTitle
-            sections {
-              ...Section
-            }
-          }
-        }
-      }
-    }
-  }
-`;

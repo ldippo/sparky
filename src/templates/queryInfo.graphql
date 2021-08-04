@@ -1,0 +1,71 @@
+fragment Section on MarkdownRemarkFrontmatterSections {
+  body
+  title
+  slideMedia {
+    absolutePath
+    publicURL
+  }
+  slideVideo
+  titleSuperText
+  actionButton {
+    url
+    text
+  }
+}
+
+query CardPage {
+  pageData: allMarkdownRemark {
+    edges {
+      node {
+        frontmatter {
+          templateKey
+          title
+          path
+          order
+          navTitle
+          sections {
+            ...Section
+          }
+        }
+      }
+    }
+  }
+}
+
+query PageText {
+  pageData: allMarkdownRemark {
+    edges {
+      node {
+        frontmatter {
+          templateKey
+          title
+          navTitle
+          path
+          order
+          sections {
+            ...Section
+          }
+        }
+      }
+    }
+  }
+}
+
+query Page {
+  pageData: allMarkdownRemark {
+    edges {
+      node {
+        frontmatter {
+          templateKey
+          title
+          path
+          order
+          navTitle
+          sections {
+            ...Section
+          }
+        }
+      }
+    }
+  }
+}

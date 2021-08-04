@@ -1,8 +1,7 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 
-import { PageQuery, SectionFragment } from './page.gql.d';
+import { PageQuery, SectionFragment } from './queryInfo.gql';
 const Page: React.FC<{
   data: PageQuery;
   path: string;
@@ -39,38 +38,3 @@ const Page: React.FC<{
 };
 
 export default Page;
-
-export const query = graphql`
-  fragment Section on MarkdownRemarkFrontmatterSections {
-    body
-    title
-    slideMedia {
-      absolutePath
-      publicURL
-    }
-    slideVideo
-    titleSuperText
-    actionButton {
-      url
-      text
-    }
-  }
-  query Page {
-    pageData: allMarkdownRemark {
-      edges {
-        node {
-          frontmatter {
-            templateKey
-            title
-            path
-            order
-            navTitle
-            sections {
-              ...Section
-            }
-          }
-        }
-      }
-    }
-  }
-`;

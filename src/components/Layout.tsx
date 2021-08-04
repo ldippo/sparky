@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
 import { useColor } from 'color-thief-react';
-import { SectionFragment } from '../templates/page.gql';
+import { SectionFragment } from '../templates/queryInfo.gql';
 
 import '../styles/global.css';
 import SectionItem from './SectionItem';

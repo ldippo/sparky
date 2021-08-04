@@ -1,8 +1,7 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 
-import { PageQuery, SectionFragment } from './page.gql';
+import { PageQuery, SectionFragment } from './queryInfo.gql';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function PageText(props: {
   data: PageQuery;
@@ -37,38 +36,3 @@ export default function PageText(props: {
     />
   );
 }
-
-export const query = graphql`
-  fragment Section on MarkdownRemarkFrontmatterSections {
-    body
-    title
-    slideMedia {
-      absolutePath
-      publicURL
-    }
-    slideVideo
-    titleSuperText
-    actionButton {
-      url
-      text
-    }
-  }
-  query PageText {
-    pageData: allMarkdownRemark {
-      edges {
-        node {
-          frontmatter {
-            templateKey
-            title
-            navTitle
-            path
-            order
-            sections {
-              ...Section
-            }
-          }
-        }
-      }
-    }
-  }
-`;
