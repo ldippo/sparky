@@ -1,28 +1,35 @@
-import React from "react";
-import ReactMarkdown from "react-markdown";
-import { useMediaQuery } from "@react-hook/media-query";
-import { motion } from "framer-motion";
-import gfm from "remark-gfm";
-import { AnimatePresence, MotionProps } from "framer-motion";
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import { useMediaQuery } from '@react-hook/media-query';
+import { motion } from 'framer-motion';
+import gfm from 'remark-gfm';
+import { AnimatePresence, MotionProps } from 'framer-motion';
 
-import { SubGrid, TinySubGridInfo, BigSubGridInfo, } from "../SubGrid/SubGrid.styles";
-import { MarkDownContainer, ImageContainer } from '../Containers/Containers.styles';
+import {
+  SubGrid,
+  TinySubGridInfo,
+  BigSubGridInfo,
+} from '../SubGrid/SubGrid.styles';
+import {
+  MarkDownContainer,
+  ImageContainer,
+} from '../Containers/Containers.styles';
 import TextTitle from '../TextTitle/TextTitle.styles';
-import BGVideo from "../BGVideo/BGVideo";
+import BGVideo from '../BGVideo/BGVideo';
 import { CTAButton } from '../CTAButton/CTAButton.styles';
 
 const motionProps: MotionProps[] = [0, 1, 2, 3].map((x) => ({
   transition: {
     delay: 0.5 + x * 0.5,
-    type: "tween",
+    type: 'tween',
     duration: 0.5,
-    ease: "easeInOut",
+    ease: 'easeInOut',
   },
   initial: { y: -100, opacity: 0 },
   animate: { y: 0, opacity: 1 },
 }));
 const SectionItem = ({ section }) => {
-  const tiny = useMediaQuery("only screen and (max-width: 768px)");
+  const tiny = useMediaQuery('only screen and (max-width: 768px)');
   const SubGridInfo = React.useMemo(
     () => (tiny ? TinySubGridInfo : BigSubGridInfo),
     [tiny]
@@ -37,10 +44,10 @@ const SectionItem = ({ section }) => {
       {section && section.imageSrc ? (
         //This nested ternary operator is due to a difference in behavior between regular and CMS views:
         //   Normally, imageSrc returns undefined when no image, but in Netlify it returns an imageSrc object with path="empty.svg"
-        section.imageSrc.path === "empty.svg" ? (
+        section.imageSrc.path === 'empty.svg' ? (
           <MarkDownContainer
             key={section.title}
-            style={{ padding: "104px 32px 0" }}
+            style={{ padding: '104px 32px 0' }}
           >
             <motion.div {...motionProps[0]}>{section.superText}</motion.div>
             <motion.h1
@@ -63,7 +70,10 @@ const SectionItem = ({ section }) => {
             {section.videoSrc ? (
               <BGVideo src={section.videoSrc} />
             ) : (
-              <ImageContainer className="ImageContainer" imgSrc={section.imageSrc} />
+              <ImageContainer
+                className="ImageContainer"
+                imgSrc={section.imageSrc}
+              />
             )}
             <SubGridInfo className="SubGridInfo">
               <TextTitle flex={1}>
@@ -72,12 +82,11 @@ const SectionItem = ({ section }) => {
               </TextTitle>
               <MarkDownContainer flex={3} {...motionProps[2]}>
                 {section.body && (
-                  <ReactMarkdown
-                    remarkPlugins={[gfm]}>
-                      {section.body || ""}
-                    </ReactMarkdown>
+                  <ReactMarkdown remarkPlugins={[gfm]}>
+                    {section.body || ''}
+                  </ReactMarkdown>
                 )}
-                {section.actionButton ? (
+                {section.actionButton?.text ? (
                   <CTAButton onClick={clickCTA}>
                     {section.actionButton.text}
                   </CTAButton>
@@ -89,7 +98,7 @@ const SectionItem = ({ section }) => {
       ) : (
         <MarkDownContainer
           key={section.title}
-          style={{ padding: "104px 32px 0" }}
+          style={{ padding: '104px 32px 0' }}
         >
           <motion.div {...motionProps[0]}>{section.superText}</motion.div>
           <motion.h1
