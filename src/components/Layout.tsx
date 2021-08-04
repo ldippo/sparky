@@ -94,11 +94,13 @@ const Layout = React.memo(function Layout({
           <ContactForm />
         ) : (
           <>
-            <SideNav
-              selectedIdx={selectedSection}
-              navItems={navItems}
-              contrastColors={contrastColors}
-            />
+            {sectionItems.length > 1 ? (
+              <SideNav
+                selectedIdx={selectedSection}
+                navItems={navItems}
+                contrastColors={contrastColors}
+              />
+            ) : null}
 
             <ContentContainer templateKey={templateKey} isTiny={isTiny}>
               {sectionItems.length && !isTiny ? (
