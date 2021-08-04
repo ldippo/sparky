@@ -13,7 +13,7 @@ export type IndexQueryQuery = (
         { __typename?: 'MarkdownRemark' }
         & { frontmatter?: Types.Maybe<(
           { __typename?: 'MarkdownRemarkFrontmatter' }
-          & Pick<Types.MarkdownRemarkFrontmatter, 'path' | 'title' | 'subtitle' | 'templateKey' | 'order'>
+          & Pick<Types.MarkdownRemarkFrontmatter, 'path' | 'title' | 'navTitle' | 'subtitle' | 'templateKey' | 'order'>
           & { sections?: Types.Maybe<Array<Types.Maybe<(
             { __typename?: 'MarkdownRemarkFrontmatterSections' }
             & Pick<Types.MarkdownRemarkFrontmatterSections, 'body' | 'title' | 'titleSuperText' | 'slideVideo'>

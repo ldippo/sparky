@@ -742,6 +742,7 @@ type MarkdownRemark implements Node {
 
 type MarkdownRemarkFrontmatter {
   title: String
+  navTitle: String
   templateKey: String
   path: String
   order: Int

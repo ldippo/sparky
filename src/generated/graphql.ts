@@ -1805,9 +1805,10 @@ export type MarkdownRemarkFilterListInput = {
 export type MarkdownRemarkFrontmatter = {
   __typename?: 'MarkdownRemarkFrontmatter';
   title?: Maybe<Scalars['String']>;
+  navTitle?: Maybe<Scalars['String']>;
   templateKey?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
-  order?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['Int']>;
   sections?: Maybe<Array<Maybe<MarkdownRemarkFrontmatterSections>>>;
   subtitle?: Maybe<Scalars['String']>;
 };

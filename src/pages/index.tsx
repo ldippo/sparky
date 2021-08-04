@@ -6,7 +6,7 @@ import Layout from '../components/Layout';
 const IndexPage = (props) => {
   const pageData = props.data.pageData.edges.map(({ node }) => node);
   const navData = pageData.map((node) => ({
-    label: node.frontmatter.title,
+    label: node.frontmatter.navTitle || node.frontmatter.title,
     path: node.frontmatter.path,
     templateKey: node.frontmatter.templateKey,
   }));
@@ -25,6 +25,7 @@ export const query = graphql`
           frontmatter {
             path
             title
+            navTitle
             subtitle
             templateKey
             order

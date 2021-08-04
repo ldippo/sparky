@@ -25,7 +25,7 @@ export type PageTextQuery = (
         { __typename?: 'MarkdownRemark' }
         & { frontmatter?: Types.Maybe<(
           { __typename?: 'MarkdownRemarkFrontmatter' }
-          & Pick<Types.MarkdownRemarkFrontmatter, 'templateKey' | 'title' | 'path' | 'order'>
+          & Pick<Types.MarkdownRemarkFrontmatter, 'templateKey' | 'title' | 'navTitle' | 'path' | 'order'>
           & { sections?: Types.Maybe<Array<Types.Maybe<(
             { __typename?: 'MarkdownRemarkFrontmatterSections' }
             & SectionFragment

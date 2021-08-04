@@ -104,6 +104,13 @@ CMS.init({
             widget: 'string',
           },
           {
+            label: 'Navigation Title',
+            name: 'navTitle',
+            widget: 'string',
+            hint: 'Text to display in the navigation',
+            required: false,
+          },
+          {
             label: 'Page Order',
             name: 'order',
             widget: 'number',

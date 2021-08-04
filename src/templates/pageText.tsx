@@ -60,6 +60,7 @@ export const query = graphql`
           frontmatter {
             templateKey
             title
+            navTitle
             path
             order
             sections {

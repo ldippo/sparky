@@ -64,6 +64,7 @@ export const query = graphql`
             title
             path
             order
+            navTitle
             sections {
               ...Section
             }
