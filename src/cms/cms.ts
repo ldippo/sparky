@@ -104,6 +104,12 @@ CMS.init({
             widget: 'string',
           },
           {
+            label: 'Page Order',
+            name: 'order',
+            widget: 'number',
+            hint: 'This will determine the order the pages are represented in the navigation',
+          },
+          {
             label: 'Path',
             name: 'path',
             widget: 'string',
@@ -136,6 +142,7 @@ CMS.init({
                 name: 'titleSuperText',
                 widget: 'string',
                 hint: 'Smaller text above the main title',
+                required: false,
               },
               {
                 label: 'Slide Background Image',

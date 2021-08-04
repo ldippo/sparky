@@ -1807,6 +1807,7 @@ export type MarkdownRemarkFrontmatter = {
   title?: Maybe<Scalars['String']>;
   templateKey?: Maybe<Scalars['String']>;
   path?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['String']>;
   sections?: Maybe<Array<Maybe<MarkdownRemarkFrontmatterSections>>>;
   subtitle?: Maybe<Scalars['String']>;
 };

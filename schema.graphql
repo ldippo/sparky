@@ -744,6 +744,7 @@ type MarkdownRemarkFrontmatter {
   title: String
   templateKey: String
   path: String
+  order: String
   sections: [MarkdownRemarkFrontmatterSections]
   subtitle: String
 }

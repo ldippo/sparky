@@ -14,6 +14,7 @@ exports.createPages = ({ actions, graphql }) => {
                   path
                   title
                   subtitle
+                  order
                   sections {
                     body
                     title

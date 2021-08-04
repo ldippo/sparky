@@ -25,7 +25,7 @@ export type CardPageQuery = (
         { __typename?: 'MarkdownRemark' }
         & { frontmatter?: Types.Maybe<(
           { __typename?: 'MarkdownRemarkFrontmatter' }
-          & Pick<Types.MarkdownRemarkFrontmatter, 'templateKey' | 'title' | 'path'>
+          & Pick<Types.MarkdownRemarkFrontmatter, 'templateKey' | 'title' | 'path' | 'order'>
           & { sections?: Types.Maybe<Array<Types.Maybe<(
             { __typename?: 'MarkdownRemarkFrontmatterSections' }
             & SectionFragment

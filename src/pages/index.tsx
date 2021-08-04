@@ -1,6 +1,6 @@
-import { graphql } from "gatsby";
-import * as React from "react";
-import Layout from "../components/Layout";
+import { graphql } from 'gatsby';
+import * as React from 'react';
+import Layout from '../components/Layout';
 
 // markup
 const IndexPage = (props) => {
@@ -27,6 +27,7 @@ export const query = graphql`
             title
             subtitle
             templateKey
+            order
             sections {
               body
               title
