@@ -14,5 +14,10 @@ const LogoContainer = styled.div((props) => ({
     zIndex: 100,
     paddingLeft: props.splash ? 0 : 24,
     marginBottom: (props.splash && '2rem') || undefined,
+    '& svg': {
+        color: 'white',
+        width: '100%',
+        height: 'auto',
+    },
 }));
 export default LogoContainer;
