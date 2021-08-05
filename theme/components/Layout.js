@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
+const react_2 = require("@emotion/react");
 const media_query_1 = require("@react-hook/media-query");
 const color_thief_react_1 = require("color-thief-react");
-require("../styles/global.css");
 const SectionItem_1 = __importDefault(require("./SectionItem"));
 const ContactForm_1 = __importDefault(require("./ContactForm"));
 const Footer_1 = __importDefault(require("./Footer"));
@@ -46,12 +46,40 @@ const Layout = react_1.default.memo(function Layout({ navData, sectionData, temp
     })), [sectionData]);
     const carouselRef = react_1.default.useRef();
     const isTiny = media_query_1.useMediaQuery('only screen and (max-width: 768px)');
-    return (react_1.default.createElement(Containers_styles_1.AppContainer, { templateKey: templateKey },
-        react_1.default.createElement(Navigation_1.default, { navData: navData, contrastColors: contrastColors }),
-        react_1.default.createElement(Containers_styles_1.MainContainer, null, templateKey === 'home' ? (react_1.default.createElement(SplashView_1.default, { videoSrc: "https://vftassets.s3.amazonaws.com/VFT_Animation.mp4", overlayColor: "rgba(0,0,0,0.65)" })) : templateKey === 'cardPage' ? (react_1.default.createElement(ContactForm_1.default, null)) : (react_1.default.createElement(react_1.default.Fragment, null,
-            sectionItems.length > 1 ? (react_1.default.createElement(SideNav_1.default, { selectedIdx: selectedSection, navItems: navItems, contrastColors: contrastColors })) : null,
-            react_1.default.createElement(Containers_styles_1.ContentContainer, { templateKey: templateKey, isTiny: isTiny }, sectionItems.length && !isTiny ? (react_1.default.createElement(Carousel_1.default, { ref: carouselRef, curPage: selectedSection }, sectionItems.map((section) => (react_1.default.createElement(SectionItem_1.default, { section: section, key: section.title }))))) : sectionItems.length ? (sectionItems.map((section) => (react_1.default.createElement(SectionItem_1.default, { section: section, key: section.title })))) : (react_1.default.createElement("div", null)))))),
-        react_1.default.createElement(Footer_1.default, null)));
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(react_2.Global, { styles: react_2.css `
+          @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+          html,
+          body,
+          #___gatsby,
+          #gatsby-focus-wrapper,
+          #preview-pane,
+          .frame-content {
+            width: 100%;
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+          }
+
+          html {
+            font-size: 12px;
+          }
+
+          h1 {
+            font-size: 1.8rem;
+          }
+
+          @media screen and (min-width: 768px) {
+            html {
+              font-size: 14px;
+            }
+          }
+        ` }),
+        react_1.default.createElement(Containers_styles_1.AppContainer, { templateKey: templateKey },
+            react_1.default.createElement(Navigation_1.default, { navData: navData, contrastColors: contrastColors }),
+            react_1.default.createElement(Containers_styles_1.MainContainer, null, templateKey === 'home' ? (react_1.default.createElement(SplashView_1.default, { videoSrc: "https://vftassets.s3.amazonaws.com/VFT_Animation.mp4", overlayColor: "rgba(0,0,0,0.65)" })) : templateKey === 'cardPage' ? (react_1.default.createElement(ContactForm_1.default, null)) : (react_1.default.createElement(react_1.default.Fragment, null,
+                sectionItems.length > 1 ? (react_1.default.createElement(SideNav_1.default, { selectedIdx: selectedSection, navItems: navItems, contrastColors: contrastColors })) : null,
+                react_1.default.createElement(Containers_styles_1.ContentContainer, { templateKey: templateKey, isTiny: isTiny }, sectionItems.length && !isTiny ? (react_1.default.createElement(Carousel_1.default, { ref: carouselRef, curPage: selectedSection }, sectionItems.map((section) => (react_1.default.createElement(SectionItem_1.default, { section: section, key: section.title }))))) : sectionItems.length ? (sectionItems.map((section) => (react_1.default.createElement(SectionItem_1.default, { section: section, key: section.title })))) : (react_1.default.createElement("div", null)))))),
+            react_1.default.createElement(Footer_1.default, null))));
 });
 exports.default = Layout;
 function pickTextColor(bgColor, lightColor, darkColor) {

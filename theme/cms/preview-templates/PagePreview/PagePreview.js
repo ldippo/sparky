@@ -28,8 +28,6 @@ const SectionItem_1 = __importDefault(require("../../../components/SectionItem")
 const PagePreview_styles_1 = require("./PagePreview.styles");
 const SectionDropdown_1 = __importDefault(require("../../../components/SectionDropdown"));
 const Footer_1 = __importDefault(require("../../../components/Footer"));
-require("./PagePreview.styles.css");
-require("../../../styles/global.css");
 const PagePreview = ({ entry, getAsset }) => {
     const sections = entry
         .getIn(['data'])
@@ -43,9 +41,11 @@ const PagePreview = ({ entry, getAsset }) => {
         actionButton,
     }));
     const [selectedTab, setSelectedTab] = react_1.useState(0);
-    return (react_1.default.createElement(PagePreview_styles_1.PreviewContainer, null,
-        react_1.default.createElement(SectionDropdown_1.default, { selectedIndex: selectedTab, sections: sections, onClick: setSelectedTab }),
-        react_1.default.createElement(SectionItem_1.default, { section: sections[selectedTab] }),
-        react_1.default.createElement(Footer_1.default, null)));
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(PagePreview_styles_1.GlobalStyles, null),
+        react_1.default.createElement(PagePreview_styles_1.PreviewContainer, null,
+            react_1.default.createElement(SectionDropdown_1.default, { selectedIndex: selectedTab, sections: sections, onClick: setSelectedTab }),
+            react_1.default.createElement(SectionItem_1.default, { section: sections[selectedTab] }),
+            react_1.default.createElement(Footer_1.default, null))));
 };
 exports.default = PagePreview;

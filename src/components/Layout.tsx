@@ -1,9 +1,8 @@
 import React from 'react';
+import { Global, css } from '@emotion/react';
 import { useMediaQuery } from '@react-hook/media-query';
 import { useColor } from 'color-thief-react';
 import { SectionFragment } from '../templates/queryInfo.gql';
-
-import '../styles/global.css';
 import SectionItem from './SectionItem';
 import ContactForm from './ContactForm';
 import Footer from './Footer';
@@ -92,46 +91,77 @@ const Layout = React.memo(function Layout({
   const isTiny = useMediaQuery('only screen and (max-width: 768px)');
 
   return (
-    <AppContainer templateKey={templateKey}>
-      <Navigation navData={navData} contrastColors={contrastColors} />
-      <MainContainer>
-        {templateKey === 'home' ? (
-          <SplashView
-            videoSrc="https://vftassets.s3.amazonaws.com/VFT_Animation.mp4"
-            overlayColor="rgba(0,0,0,0.65)"
-          />
-        ) : templateKey === 'cardPage' ? (
-          <ContactForm />
-        ) : (
-          <>
-            {sectionItems.length > 1 ? (
-              <SideNav
-                selectedIdx={selectedSection}
-                navItems={navItems}
-                contrastColors={contrastColors}
-              />
-            ) : null}
+    <>
+      <Global
+        styles={css`
+          @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+          html,
+          body,
+          #___gatsby,
+          #gatsby-focus-wrapper,
+          #preview-pane,
+          .frame-content {
+            width: 100%;
+            margin: 0;
+            font-family: 'Open Sans', sans-serif;
+          }
 
-            <ContentContainer templateKey={templateKey} isTiny={isTiny}>
-              {sectionItems.length && !isTiny ? (
-                <Carousel ref={carouselRef} curPage={selectedSection}>
-                  {sectionItems.map((section) => (
+          html {
+            font-size: 12px;
+          }
+
+          h1 {
+            font-size: 1.8rem;
+          }
+
+          @media screen and (min-width: 768px) {
+            html {
+              font-size: 14px;
+            }
+          }
+        `}
+      />
+      <AppContainer templateKey={templateKey}>
+        <Navigation navData={navData} contrastColors={contrastColors} />
+        <MainContainer>
+          {templateKey === 'home' ? (
+            <SplashView
+              videoSrc="https://vftassets.s3.amazonaws.com/VFT_Animation.mp4"
+              overlayColor="rgba(0,0,0,0.65)"
+            />
+          ) : templateKey === 'cardPage' ? (
+            <ContactForm />
+          ) : (
+            <>
+              {sectionItems.length > 1 ? (
+                <SideNav
+                  selectedIdx={selectedSection}
+                  navItems={navItems}
+                  contrastColors={contrastColors}
+                />
+              ) : null}
+
+              <ContentContainer templateKey={templateKey} isTiny={isTiny}>
+                {sectionItems.length && !isTiny ? (
+                  <Carousel ref={carouselRef} curPage={selectedSection}>
+                    {sectionItems.map((section) => (
+                      <SectionItem section={section} key={section.title} />
+                    ))}
+                  </Carousel>
+                ) : sectionItems.length ? (
+                  sectionItems.map((section) => (
                     <SectionItem section={section} key={section.title} />
-                  ))}
-                </Carousel>
-              ) : sectionItems.length ? (
-                sectionItems.map((section) => (
-                  <SectionItem section={section} key={section.title} />
-                ))
-              ) : (
-                <div />
-              )}
-            </ContentContainer>
-          </>
-        )}
-      </MainContainer>
-      <Footer />
-    </AppContainer>
+                  ))
+                ) : (
+                  <div />
+                )}
+              </ContentContainer>
+            </>
+          )}
+        </MainContainer>
+        <Footer />
+      </AppContainer>
+    </>
   );
 });
 export default Layout;
