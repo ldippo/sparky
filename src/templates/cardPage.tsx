@@ -15,7 +15,7 @@ export default function CardPage(props: {
     .filter(Boolean) || []) as MarkdownRemarkFrontmatter[];
 
   const navData = pageData
-    .sort((a, b) => ((a.order || 0) < (b.order || 0) ? 1 : -1))
+    .sort((a, b) => ((a.order || 0) < (b.order || 0) ? -1 : 1))
     .map(({ title, path, templateKey, navTitle }) => ({
       label: navTitle || title || '',
       path: path || '#',
