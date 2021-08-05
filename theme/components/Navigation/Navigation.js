@@ -31,7 +31,7 @@ const Navigation = function Navigation({ navData, contrastColors, }) {
             React.createElement(LogoContainer, null,
                 React.createElement(Link, { to: "", contrastColors: contrastColors },
                     React.createElement(SVGLogo, { css: css `
-                img path {
+                path {
                   fill: inherit;
                   color: inherit;
                 }

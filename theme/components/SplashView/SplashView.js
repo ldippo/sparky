@@ -10,7 +10,7 @@ const SplashView = ({ videoSrc, imageSrc, overlayColor }) => {
     const content = (React.createElement(React.Fragment, null,
         React.createElement(LogoContainer, { splash: true },
             React.createElement(SVGLogo, { css: css `
-            img path {
+            path {
               fill: white;
               color: 'white';
               width: '100%';

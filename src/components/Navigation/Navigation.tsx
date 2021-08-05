@@ -81,7 +81,7 @@ const Navigation = function Navigation({
           <Link to="" contrastColors={contrastColors}>
             <SVGLogo
               css={css`
-                img path {
+                path {
                   fill: inherit;
                   color: inherit;
                 }
