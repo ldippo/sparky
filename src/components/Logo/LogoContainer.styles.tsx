@@ -5,6 +5,7 @@ import { mq } from '../../styles/breakpoints';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const LogoContainer: React.FC<{ splash?: boolean; style?: any }> = styled.div(
   (props) => ({
+    color: 'white',
     width: (props.splash && '200px') || undefined,
     flex: props.splash ? 0 : 1,
     [mq[1]]: {
