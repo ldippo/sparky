@@ -1,4 +1,5 @@
 import CMS from 'netlify-cms-app';
+import withEmotion from './with-emotion';
 import PagePreview from './preview-templates/PagePreview/PagePreview';
 CMS.init({
     config: {
@@ -201,4 +202,4 @@ CMS.init({
         ],
     },
 });
-CMS.registerPreviewTemplate('primaryPage', PagePreview);
+CMS.registerPreviewTemplate('primaryPage', withEmotion(PagePreview));
