@@ -47,7 +47,7 @@ exports.createPages = ({ actions, graphql }) => {
       const frontMatter = edge.node.frontmatter
       pathName = frontMatter && frontMatter.path || 'about'
 
-      component = require.resolve(`./src/templates/${String(frontMatter && frontMatter.templateKey || 'page')}.tsx`);
+      component = require.resolve(`./theme/templates/${String(frontMatter && frontMatter.templateKey || 'page')}.js`);
       const id = pathName
       createPage({
         path: pathName,

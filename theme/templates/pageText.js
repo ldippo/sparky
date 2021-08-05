@@ -7,9 +7,9 @@ const react_1 = __importDefault(require("react"));
 const Layout_1 = __importDefault(require("../components/Layout"));
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function PageText(props) {
-    const pageData = props.data.pageData.edges
+    const pageData = (props.data?.pageData.edges
         .map(({ node }) => node.frontmatter)
-        .filter(Boolean);
+        .filter(Boolean) || []);
     const navData = pageData
         .sort((a, b) => ((a.order || 0) < (b.order || 0) ? 1 : -1))
         .map(({ title, path, templateKey }) => ({

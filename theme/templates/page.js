@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const Layout_1 = __importDefault(require("../components/Layout"));
 const Page = function Page(props) {
-    const pageData = props.data.pageData.edges
+    const pageData = (props.data?.pageData.edges
         .map(({ node }) => node.frontmatter)
-        .filter(Boolean);
+        .filter(Boolean) || []);
     const navData = pageData
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .sort((a, b) => ((a.order || 0) < (b.order || 0) ? 1 : -1))

@@ -9,9 +9,9 @@ export default function PageText(props: {
   path: string;
   templateKey: string;
 }) {
-  const pageData = props.data.pageData.edges
+  const pageData = (props.data?.pageData.edges
     .map(({ node }) => node.frontmatter)
-    .filter(Boolean) as MarkdownRemarkFrontmatter[];
+    .filter(Boolean) || []) as MarkdownRemarkFrontmatter[];
 
   const navData = pageData
     .sort((a, b) => ((a.order || 0) < (b.order || 0) ? 1 : -1))
