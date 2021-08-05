@@ -18,8 +18,8 @@ const LogoContainer: React.FC<{ splash?: boolean; style?: any }> = styled.div(
     paddingLeft: props.splash ? 0 : 24,
     marginBottom: (props.splash && '2rem') || undefined,
     '& svg': {
-      color: 'white',
-      width: '100%',
+      color: 'inherit',
+      width: props.splash ? '100%' : 'auto',
       height: 'auto',
     },
   })
