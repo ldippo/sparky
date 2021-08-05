@@ -17,6 +17,7 @@ import {
 import LogoContainer from '../Logo/LogoContainer.styles';
 import Link from '../Link/Link';
 import SVGLogo from '../Logo/SVGLogo';
+import { css } from '@emotion/react';
 
 const Navigation = function Navigation({
   navData,
@@ -78,7 +79,14 @@ const Navigation = function Navigation({
       >
         <LogoContainer>
           <Link to="" contrastColors={contrastColors}>
-            <SVGLogo />
+            <SVGLogo
+              className={css`
+                img path {
+                  fill: inherit;
+                  color: inherit;
+                }
+              `}
+            />
           </Link>
         </LogoContainer>
         {!isTiny && (

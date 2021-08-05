@@ -1,6 +1,6 @@
 import React from 'react';
 import GatLink from 'gatsby-link';
-
+import { css } from '@emotion/react';
 import LogoContainer from '../Logo/LogoContainer.styles';
 import SVGLogo from '../Logo/SVGLogo';
 import { CTAButtonLarge } from '../CTAButton/CTAButton.styles';
@@ -19,12 +19,14 @@ const SplashView: React.FC<{
     <>
       <LogoContainer splash>
         <SVGLogo
-          style={{
-            fill: 'white',
-            color: 'white',
-            width: '100%',
-            height: 'auto',
-          }}
+          className={css`
+            img path {
+              fill: white;
+              color: 'white';
+              width: '100%';
+              height: 'auto';
+            }
+          `}
         />
       </LogoContainer>
       <GatLink to="/contact">

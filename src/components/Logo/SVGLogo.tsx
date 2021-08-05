@@ -2,8 +2,8 @@
 
 import React from 'react';
 
-const SVGLogo: React.FC<any> = function SVGLogo({ style }) {
-  return <img style={style} src={'/logo.svg'} alt="Logo" />;
+const SVGLogo: React.FC<any> = function SVGLogo({ className }) {
+  return <img className={className} src={'/logo.svg'} alt="Logo" />;
 };
 
 export default SVGLogo;
