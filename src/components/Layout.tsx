@@ -16,7 +16,16 @@ import {
   MainContainer,
   ContentContainer,
 } from './Containers/Containers.styles';
+import { Maybe } from '../generated/graphql';
 
+export interface SectionItemProps {
+  title: Maybe<string> | undefined;
+  superText: Maybe<string> | undefined;
+  imageSrc: Maybe<string> | undefined;
+  videoSrc: Maybe<string> | undefined;
+  body: SectionFragment['body'];
+  actionButton: SectionFragment['actionButton'];
+}
 const Layout = React.memo(function Layout({
   navData,
   sectionData,
@@ -32,7 +41,8 @@ const Layout = React.memo(function Layout({
     () => sectionData[selectedSection]?.slideMedia?.publicURL,
     [sectionData, selectedSection]
   );
-  const { data: colorData, loading } = useColor(mediaUrl, 'hex');
+
+  const { data: colorData, loading } = useColor(mediaUrl || '#', 'hex');
 
   const [contrastColors, setContrastColors] = React.useState([
     'white',

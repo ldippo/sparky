@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useMediaQuery } from '@react-hook/media-query';
@@ -17,7 +18,8 @@ import {
 import TextTitle from '../TextTitle/TextTitle.styles';
 import BGVideo from '../BGVideo/BGVideo';
 import { CTAButton } from '../CTAButton/CTAButton.styles';
-import { navigate } from 'gatsby';
+import { navigate } from 'gatsby-link';
+import { SectionItemProps } from '../Layout';
 
 const motionProps: MotionProps[] = [0, 1, 2, 3].map((x) => ({
   transition: {
@@ -29,7 +31,7 @@ const motionProps: MotionProps[] = [0, 1, 2, 3].map((x) => ({
   initial: { y: -100, opacity: 0 },
   animate: { y: 0, opacity: 1 },
 }));
-const SectionItem = ({ section }) => {
+const SectionItem: React.FC<{ section: SectionItemProps }> = ({ section }) => {
   const tiny = useMediaQuery('only screen and (max-width: 768px)');
   const SubGridInfo = React.useMemo(
     () => (tiny ? TinySubGridInfo : BigSubGridInfo),
@@ -37,20 +39,23 @@ const SectionItem = ({ section }) => {
   );
 
   function clickCTA() {
-    const isAppLink = section.actionButton.url.charAt(0) === '/';
-    if (isAppLink) {
-      navigate(section.actionButton.url);
-    } else {
-      window.open(`${section.actionButton.url}`, '_blank');
+    const isAppLink = section?.actionButton?.url?.charAt(0) === '/';
+    if (section?.actionButton?.url) {
+      if (isAppLink) {
+        navigate(section.actionButton.url);
+      } else {
+        window.open(`${section.actionButton.url}`, '_blank');
+      }
     }
   }
 
   return (
     <AnimatePresence>
-      {section && section.imageSrc ? (
+      {section && section?.imageSrc ? (
         //This nested ternary operator is due to a difference in behavior between regular and CMS views:
         //   Normally, imageSrc returns undefined when no image, but in Netlify it returns an imageSrc object with path="empty.svg"
-        section.imageSrc.path === 'empty.svg' ? (
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (section.imageSrc as any).path === 'empty.svg' ? (
           <MarkDownContainer
             key={section.title}
             style={{ padding: '104px 32px 0' }}

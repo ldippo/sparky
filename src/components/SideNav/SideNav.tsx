@@ -2,6 +2,7 @@ import React from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
 import { AnimatePresence } from 'framer-motion';
 import { StyledSideNav, SideNavItem } from './SideNav.styles';
+import { Maybe } from '../../generated/graphql';
 
 const SideNav = React.memo(function SideNav({
   navItems,
@@ -9,8 +10,8 @@ const SideNav = React.memo(function SideNav({
   contrastColors,
 }: {
   selectedIdx: number;
-  navItems: { onClick(): void; text: string }[];
-  contrastColors: any[];
+  navItems: { onClick(): void; text: Maybe<string> | undefined }[];
+  contrastColors: unknown[];
 }) {
   const isTiny = useMediaQuery('only screen and (max-width: 768px)');
   if (navItems.length <= 1) return <></>;

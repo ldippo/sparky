@@ -1,9 +1,11 @@
 overwrite: true
-schema: "./schema.graphql"
-documents: "src/**/*"
+schema: './schema.graphql'
+documents: 'src/**/*'
+
 generates:
   src/generated/graphql.ts:
-    - typescript
+    plugins:
+      - typescript
   src/:
     preset: near-operation-file
     presetConfig:
@@ -11,4 +13,6 @@ generates:
       baseTypesPath: ../src/generated/graphql.ts
     plugins:
       - typescript-operations
-  
+config:
+  namingConvention:
+    enumValues: keep
