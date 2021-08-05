@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const netlify_cms_app_1 = __importDefault(require("netlify-cms-app"));
-const with_emotion_1 = __importDefault(require("./with-emotion"));
 const PagePreview_1 = __importDefault(require("./preview-templates/PagePreview/PagePreview"));
 netlify_cms_app_1.default.init({
     config: {
@@ -207,4 +206,4 @@ netlify_cms_app_1.default.init({
         ],
     },
 });
-netlify_cms_app_1.default.registerPreviewTemplate('primaryPage', with_emotion_1.default(PagePreview_1.default));
+netlify_cms_app_1.default.registerPreviewTemplate('primaryPage', PagePreview_1.default);
