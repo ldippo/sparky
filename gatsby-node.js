@@ -40,7 +40,7 @@ exports.createPages = ({ actions, graphql }) => {
       result.errors.forEach(e => console.error(e.toString()));
       return Promise.reject(result.errors);
     }
-
+    const formattedData = { ...result.data, allMarkdownRemark: undefined, pageData: result.data.allMarkdownRemark }
     const postOrPage = result.data.allMarkdownRemark.edges
     postOrPage.forEach(edge => {
       let component, pathName;
@@ -54,7 +54,7 @@ exports.createPages = ({ actions, graphql }) => {
         component,
         context: {
           id,
-          data: result.data
+          data: formattedData
         },
       });
     });

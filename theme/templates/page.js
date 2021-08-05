@@ -12,8 +12,8 @@ const Page = function Page(props) {
     const navData = pageData
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .sort((a, b) => ((a.order || 0) < (b.order || 0) ? 1 : -1))
-        .map(({ title, path, templateKey }) => ({
-        label: title || '',
+        .map(({ title, path, templateKey, navTitle }) => ({
+        label: navTitle || title || '',
         path: path || '#',
         templateKey: templateKey || 'page',
     }));
