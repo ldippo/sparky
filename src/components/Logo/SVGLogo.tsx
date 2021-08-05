@@ -1,13 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import React from 'react';
+import { ReactSVG } from 'react-svg';
 
 const SVGLogo: React.FC<any> = function SVGLogo({ className }) {
-  return (
-    <svg>
-      <use href="/logo.svg" className={className} />
-    </svg>
-  );
+  return <ReactSVG src="/logo.svg" />;
 };
 
 export default SVGLogo;

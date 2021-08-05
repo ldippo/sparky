@@ -80,12 +80,16 @@ const Navigation = function Navigation({
         <LogoContainer>
           <Link to="" contrastColors={contrastColors}>
             <SVGLogo
-              css={css`
-                path {
-                  fill: inherit;
-                  color: inherit;
-                }
-              `}
+              css={css({
+                '& path': {
+                  fill: contrastColors[0],
+                  color: contrastColors[0],
+                },
+                '& svg': {
+                  height: 200,
+                  width: 200,
+                },
+              })}
             />
           </Link>
         </LogoContainer>
