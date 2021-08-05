@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const Layout_1 = __importDefault(require("../components/Layout"));
 const Page = function Page(props) {
-    const pageData = (props.data?.pageData.edges
+    const pageData = (props.pageContext.data?.pageData.edges
         .map(({ node }) => node.frontmatter)
         .filter(Boolean) || []);
     const navData = pageData

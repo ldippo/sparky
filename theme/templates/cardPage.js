@@ -8,7 +8,7 @@ const react_1 = __importDefault(require("react"));
 const Layout_1 = __importDefault(require("../components/Layout"));
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function CardPage(props) {
-    const pageData = (props.data?.pageData.edges
+    const pageData = (props.pageContext.data?.pageData.edges
         .map(({ node }) => node.frontmatter)
         .filter(Boolean) || []);
     const navData = pageData

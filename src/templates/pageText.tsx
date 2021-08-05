@@ -5,11 +5,11 @@ import { MarkdownRemarkFrontmatter } from '../generated/graphql';
 import { PageQuery, SectionFragment } from './queryInfo.gql';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function PageText(props: {
-  data: PageQuery;
+  pageContext: { data?: PageQuery };
   path: string;
   templateKey: string;
 }) {
-  const pageData = (props.data?.pageData.edges
+  const pageData = (props.pageContext.data?.pageData.edges
     .map(({ node }) => node.frontmatter)
     .filter(Boolean) || []) as MarkdownRemarkFrontmatter[];
 

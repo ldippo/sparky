@@ -4,11 +4,11 @@ import { MarkdownRemarkFrontmatter } from '../generated/graphql';
 
 import { PageQuery, SectionFragment } from './queryInfo.gql';
 const Page: React.FC<{
-  data?: PageQuery;
+  pageContext: { data?: PageQuery };
   path: string;
   templateKey: string;
 }> = function Page(props) {
-  const pageData = (props.data?.pageData.edges
+  const pageData = (props.pageContext.data?.pageData.edges
     .map(({ node }) => node.frontmatter)
     .filter(Boolean) || []) as MarkdownRemarkFrontmatter[];
 

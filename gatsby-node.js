@@ -53,7 +53,8 @@ exports.createPages = ({ actions, graphql }) => {
         path: pathName,
         component,
         context: {
-          id
+          id,
+          data: result.data
         },
       });
     });
