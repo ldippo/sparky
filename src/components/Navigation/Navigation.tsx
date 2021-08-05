@@ -80,7 +80,7 @@ const Navigation = function Navigation({
         <LogoContainer>
           <Link to="" contrastColors={contrastColors}>
             <SVGLogo
-              className={css`
+              css={css`
                 img path {
                   fill: inherit;
                   color: inherit;

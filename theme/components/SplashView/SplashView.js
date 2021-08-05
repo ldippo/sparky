@@ -9,7 +9,7 @@ import { SplashContentContainer, ImageContainer, } from '../Containers/Container
 const SplashView = ({ videoSrc, imageSrc, overlayColor }) => {
     const content = (React.createElement(React.Fragment, null,
         React.createElement(LogoContainer, { splash: true },
-            React.createElement(SVGLogo, { className: css `
+            React.createElement(SVGLogo, { css: css `
             img path {
               fill: white;
               color: 'white';

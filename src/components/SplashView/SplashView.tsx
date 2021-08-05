@@ -19,7 +19,7 @@ const SplashView: React.FC<{
     <>
       <LogoContainer splash>
         <SVGLogo
-          className={css`
+          css={css`
             img path {
               fill: white;
               color: 'white';
