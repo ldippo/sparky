@@ -1,35 +1,10 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.useCarousel = void 0;
-const react_1 = __importDefault(require("react"));
-const framer_motion_1 = require("framer-motion");
-const react_use_1 = require("react-use");
-const useDimensions_1 = __importStar(require("./useDimensions"));
-const react_device_detect_1 = require("react-device-detect");
-const react_use_gesture_1 = require("react-use-gesture");
-const debounce_1 = __importDefault(require("lodash/debounce"));
+import React from "react";
+import { motion, AnimatePresence, useMotionValue, } from "framer-motion";
+import { useKeyPressEvent } from "react-use";
+import useDimensions, { isDimensionObject } from "./useDimensions";
+import { isMobile } from "react-device-detect";
+import { useDrag } from "react-use-gesture";
+import debounce from "lodash/debounce";
 /**
  * A hook which handles the complicated parts of an infinitely scrollable carousel. This wraps the children and handles their animation when navigation commands are invoked.
  * The hook provides event Left/Right navigation through keyboard commands and exports click handlers for custom left/right nav buttons.
@@ -37,34 +12,34 @@ const debounce_1 = __importDefault(require("lodash/debounce"));
  * navigation commands externally.
  * @param param0 See UseCarouselInput
  */
-function useCarousel({ step = 1, gutterSize = 32, visibleSlideCount = 3, children, innerCarouselStyle, carouselItemWrapperStyle, carouselRef, keyboardNav, vertical, onChangeActive, active, }) {
-    const stepRef = react_1.default.useRef(step);
-    const slides = react_1.default.useMemo(() => react_1.default.Children.toArray(children), [
+export function useCarousel({ step = 1, gutterSize = 32, visibleSlideCount = 3, children, innerCarouselStyle, carouselItemWrapperStyle, carouselRef, keyboardNav, vertical, onChangeActive, active, }) {
+    const stepRef = React.useRef(step);
+    const slides = React.useMemo(() => React.Children.toArray(children), [
         children,
     ]);
-    const slideCount = react_1.default.useMemo(() => visibleSlideCount > slides.length ? slides.length : visibleSlideCount, [visibleSlideCount, slides.length]);
-    const noNavigation = react_1.default.useMemo(() => {
+    const slideCount = React.useMemo(() => visibleSlideCount > slides.length ? slides.length : visibleSlideCount, [visibleSlideCount, slides.length]);
+    const noNavigation = React.useMemo(() => {
         return slideCount === slides.length;
     }, [slideCount, slides.length]);
-    react_1.default.useEffect(() => {
+    React.useEffect(() => {
         stepRef.current = step;
     }, [step]);
-    const [containerRef, containerSize] = useDimensions_1.default();
+    const [containerRef, containerSize] = useDimensions();
     /** Compute slide width from container size & gutter value */
-    const width = react_1.default.useMemo(() => useDimensions_1.isDimensionObject(containerSize)
+    const width = React.useMemo(() => isDimensionObject(containerSize)
         ? containerSize.width / slideCount - gutterSize
         : 0, [containerSize, slideCount, gutterSize]);
-    const height = react_1.default.useMemo(() => useDimensions_1.isDimensionObject(containerSize)
+    const height = React.useMemo(() => isDimensionObject(containerSize)
         ? containerSize.height / slideCount - gutterSize
         : 0, [containerSize, slideCount, gutterSize]);
-    const [slideState, setSlideState] = react_1.default.useState(createSlideState(slides));
-    const [direction, setDirection] = react_1.default.useState("right");
-    const lastDirectionRef = react_1.default.useRef(direction);
-    const offsetValue = react_1.default.useMemo(() => slideCount - slideState.length === 2
+    const [slideState, setSlideState] = React.useState(createSlideState(slides));
+    const [direction, setDirection] = React.useState("right");
+    const lastDirectionRef = React.useRef(direction);
+    const offsetValue = React.useMemo(() => slideCount - slideState.length === 2
         ? (vertical ? height : width) + gutterSize
         : 0, [slideCount, slideState.length, width, gutterSize, height, vertical]);
-    const offset = framer_motion_1.useMotionValue(offsetValue);
-    react_1.default.useEffect(() => {
+    const offset = useMotionValue(offsetValue);
+    React.useEffect(() => {
         offset.stop();
         offset.set(offsetValue);
     }, [offsetValue]);
@@ -102,11 +77,11 @@ function useCarousel({ step = 1, gutterSize = 32, visibleSlideCount = 3, childre
         },
     };
     /** Handle changes in children */
-    react_1.default.useEffect(() => {
+    React.useEffect(() => {
         setSlideState(createSlideState(slides));
     }, [slides]);
     /** Click handlers */
-    const clickRightArrow = react_1.default.useCallback(async () => {
+    const clickRightArrow = React.useCallback(async () => {
         if (active) {
             setDirection("right");
             lastDirectionRef.current = "right";
@@ -128,7 +103,7 @@ function useCarousel({ step = 1, gutterSize = 32, visibleSlideCount = 3, childre
         }
         // await controls.start('right')
     }, [active, onChangeActive]);
-    const clickLeftArrow = react_1.default.useCallback(async () => {
+    const clickLeftArrow = React.useCallback(async () => {
         if (active) {
             setDirection("left");
             lastDirectionRef.current = "left";
@@ -150,17 +125,17 @@ function useCarousel({ step = 1, gutterSize = 32, visibleSlideCount = 3, childre
         }
     }, [onChangeActive, active]);
     /** Key Event Handlers */
-    const pressKeyLeft = react_1.default.useCallback(() => {
+    const pressKeyLeft = React.useCallback(() => {
         if (keyboardNav && !noNavigation) {
             clickLeftArrow();
         }
     }, [clickLeftArrow, keyboardNav, noNavigation]);
-    const pressKeyRight = react_1.default.useCallback(() => {
+    const pressKeyRight = React.useCallback(() => {
         if (keyboardNav && !noNavigation) {
             clickRightArrow();
         }
     }, [clickRightArrow, keyboardNav, noNavigation]);
-    const bind = react_use_gesture_1.useDrag(debounce_1.default(async ({ movement: [mx, my] }) => {
+    const bind = useDrag(debounce(async ({ movement: [mx, my] }) => {
         if (vertical) {
             const up = my < 0;
             if (up) {
@@ -180,14 +155,14 @@ function useCarousel({ step = 1, gutterSize = 32, visibleSlideCount = 3, childre
             }
         }
     }, 250));
-    react_use_1.useKeyPressEvent(vertical ? "ArrowUp" : "ArrowLeft", pressKeyLeft);
-    react_use_1.useKeyPressEvent(vertical ? "ArrowDown" : "ArrowRight", pressKeyRight);
+    useKeyPressEvent(vertical ? "ArrowUp" : "ArrowLeft", pressKeyLeft);
+    useKeyPressEvent(vertical ? "ArrowDown" : "ArrowRight", pressKeyRight);
     /** Provide imperative handlers for external use */
-    react_1.default.useImperativeHandle(carouselRef, () => ({
+    React.useImperativeHandle(carouselRef, () => ({
         clickLeftArrow,
         clickRightArrow,
     }));
-    const innerCarouselStyles = react_1.default.useMemo(() => ({
+    const innerCarouselStyles = React.useMemo(() => ({
         width: "100%",
         height: "100%",
         maxHeight: "100%",
@@ -198,7 +173,7 @@ function useCarousel({ step = 1, gutterSize = 32, visibleSlideCount = 3, childre
         overflow: "hidden",
         ...innerCarouselStyle,
     }), [innerCarouselStyle, vertical]);
-    const carouselItemWrapperStyles = react_1.default.useMemo(() => ({
+    const carouselItemWrapperStyles = React.useMemo(() => ({
         display: "flex",
         justifyContent: "center",
         width,
@@ -210,17 +185,17 @@ function useCarousel({ step = 1, gutterSize = 32, visibleSlideCount = 3, childre
         maxHeight: `calc(100% - ${gutterSize}px)`,
         ...carouselItemWrapperStyle,
     }), [width, height, carouselItemWrapperStyle, gutterSize]);
-    const mapCarouselItems = react_1.default.useCallback((slide, i) => {
+    const mapCarouselItems = React.useCallback((slide, i) => {
         const spring = {
             type: "spring",
             stiffness: 100,
             damping: 20,
             duration: 0.5,
         };
-        return (react_1.default.createElement(framer_motion_1.motion.div, { key: slide?.key, custom: i + 1, className: "ldcarousel-item-wrapper", layout: true, style: carouselItemWrapperStyles, exit: `${direction}Exit`, initial: direction, animate: "base", variants: variants, transition: spring }, slide));
+        return (React.createElement(motion.div, { key: slide?.key, custom: i + 1, className: "ldcarousel-item-wrapper", layout: true, style: carouselItemWrapperStyles, exit: `${direction}Exit`, initial: direction, animate: "base", variants: variants, transition: spring }, slide));
     }, [direction, variants, carouselItemWrapperStyles]);
-    const carouselInner = react_1.default.useMemo(() => (react_1.default.createElement(framer_motion_1.AnimatePresence, null,
-        react_1.default.createElement(framer_motion_1.motion.div, Object.assign({ layout: true, ref: (r) => r && containerRef(r), className: "ldcarousel-inner", style: innerCarouselStyles }, (react_device_detect_1.isMobile ? bind() : {})), slideState
+    const carouselInner = React.useMemo(() => (React.createElement(AnimatePresence, null,
+        React.createElement(motion.div, Object.assign({ layout: true, ref: (r) => r && containerRef(r), className: "ldcarousel-inner", style: innerCarouselStyles }, (isMobile ? bind() : {})), slideState
             .filter(Boolean)
             .filter((_slide, i) => i < slideCount + 2)
             .map(mapCarouselItems)))), [
@@ -238,7 +213,6 @@ function useCarousel({ step = 1, gutterSize = 32, visibleSlideCount = 3, childre
         noNavigation,
     };
 }
-exports.useCarousel = useCarousel;
 function filterAndBufferSlideState(slides) {
     const filteredSlides = filterBuffers(slides);
     return bufferSlideState(filteredSlides);

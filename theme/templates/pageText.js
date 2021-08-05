@@ -1,12 +1,7 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const Layout_1 = __importDefault(require("../components/Layout"));
+import React from 'react';
+import Layout from '../components/Layout';
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-function PageText(props) {
+export default function PageText(props) {
     const pageData = (props.pageContext.data?.pageData.edges
         .map(({ node }) => node.frontmatter)
         .filter(Boolean) || []);
@@ -21,6 +16,5 @@ function PageText(props) {
     const sectionData = selectedPage
         ? selectedPage.sections
         : [];
-    return (react_1.default.createElement(Layout_1.default, { navData: navData, sectionData: sectionData, templateKey: selectedPage?.templateKey || 'page' }));
+    return (React.createElement(Layout, { navData: navData, sectionData: sectionData, templateKey: selectedPage?.templateKey || 'page' }));
 }
-exports.default = PageText;

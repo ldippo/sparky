@@ -1,26 +1,20 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.FormTextArea = exports.FormInput = exports.FormLabel = exports.FormItem = exports.FormContainer = void 0;
-const styled_1 = __importDefault(require("@emotion/styled"));
-const breakpoints_1 = require("../../styles/breakpoints");
-exports.FormContainer = styled_1.default.form({
+import styled from '@emotion/styled';
+import { mq } from '../../styles/breakpoints';
+export const FormContainer = styled.form({
     margin: '0 2rem',
     textAlign: 'center',
-    [breakpoints_1.mq[1]]: {
+    [mq[1]]: {
         margin: '0 5rem',
     },
-    [breakpoints_1.mq[2]]: {
+    [mq[2]]: {
         width: '60%',
     },
 });
-exports.FormItem = styled_1.default.div({
+export const FormItem = styled.div({
     textAlign: 'left',
     marginBottom: '1rem',
 });
-exports.FormLabel = styled_1.default.label({
+export const FormLabel = styled.label({
     padding: '.5rem 1rem .6rem',
     display: 'block',
     fontSize: '0.9rem',
@@ -42,8 +36,8 @@ const inputStyles = {
         boxShadow: '0 0 2px 1px #5071ad',
     },
 };
-exports.FormInput = styled_1.default.input(inputStyles);
-exports.FormTextArea = styled_1.default.textarea({
+export const FormInput = styled.input(inputStyles);
+export const FormTextArea = styled.textarea({
     resize: 'none',
     ...inputStyles,
 });

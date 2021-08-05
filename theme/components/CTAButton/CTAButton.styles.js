@@ -1,12 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.CTAButtonLarge = exports.CTAButton = void 0;
-const styled_1 = __importDefault(require("@emotion/styled"));
-const breakpoints_1 = require("../../styles/breakpoints");
-exports.CTAButton = styled_1.default.button `
+import styled from '@emotion/styled';
+import { mq } from '../../styles/breakpoints';
+export const CTAButton = styled.button `
 	border: 2px solid black;
 	border-radius: 100px;
 	padding: 16px 24px;
@@ -14,7 +8,7 @@ exports.CTAButton = styled_1.default.button `
 	width: 100%;
 	background: rgba(255, 255, 255, 0.5);
 	font-size: 14px;
-	${breakpoints_1.mq[0]} {
+	${mq[0]} {
 		width: auto;
 	}
 	margin-top: 16px;
@@ -22,7 +16,7 @@ exports.CTAButton = styled_1.default.button `
 	cursor: pointer;
 	font-weight: 600;
 `;
-exports.CTAButtonLarge = styled_1.default(exports.CTAButton)({
+export const CTAButtonLarge = styled(CTAButton)({
     lineHeight: '1.3rem',
     fontSize: '1.3rem',
     color: 'white',

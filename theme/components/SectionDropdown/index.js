@@ -1,7 +1,2 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const SectionDropdown_1 = __importDefault(require("./SectionDropdown"));
-exports.default = SectionDropdown_1.default;
+import SectionDropdown from './SectionDropdown';
+export default SectionDropdown;

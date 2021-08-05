@@ -39,13 +39,8 @@ const SectionItem: React.FC<{ section: SectionItemProps }> = ({ section }) => {
   );
 
   function clickCTA() {
-    const isAppLink = section?.actionButton?.url?.charAt(0) === '/';
     if (section?.actionButton?.url) {
-      if (isAppLink) {
-        navigate(section.actionButton.url);
-      } else {
-        window.open(`${section.actionButton.url}`, '_blank');
-      }
+      navigate(section.actionButton.url);
     }
   }
 

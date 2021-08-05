@@ -1,11 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const netlify_cms_app_1 = __importDefault(require("netlify-cms-app"));
-const PagePreview_1 = __importDefault(require("./preview-templates/PagePreview/PagePreview"));
-netlify_cms_app_1.default.init({
+import CMS from 'netlify-cms-app';
+import PagePreview from './preview-templates/PagePreview/PagePreview';
+CMS.init({
     config: {
         backend: {
             name: 'git-gateway',
@@ -206,4 +201,4 @@ netlify_cms_app_1.default.init({
         ],
     },
 });
-netlify_cms_app_1.default.registerPreviewTemplate('primaryPage', PagePreview_1.default);
+CMS.registerPreviewTemplate('primaryPage', PagePreview);

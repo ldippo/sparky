@@ -2,8 +2,9 @@
   "include": ["./src/**/*"],
   "compilerOptions": {
     "target": "esnext",
-    "module": "CommonJS",
-    "lib": ["dom", "es2017"],
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["dom", "es2017", "ESNext"],
     "allowJs": true,
     // "checkJs": true,
     "jsx": "react",

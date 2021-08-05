@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.SortOrderEnum = exports.SitePluginFieldsEnum = exports.SitePageFieldsEnum = exports.SiteFunctionFieldsEnum = exports.SiteFieldsEnum = exports.SiteBuildMetadataFieldsEnum = exports.PotraceTurnPolicy = exports.MdxFieldsEnum = exports.MarkdownRemarkFieldsEnum = exports.MarkdownHeadingLevels = exports.MarkdownExcerptFormats = exports.ImageSharpFieldsEnum = exports.ImagePlaceholder = exports.ImageLayout = exports.ImageFormat = exports.ImageFit = exports.ImageCropFocus = exports.HeadingsMdx = exports.FileFieldsEnum = exports.DirectoryFieldsEnum = void 0;
-var DirectoryFieldsEnum;
+export var DirectoryFieldsEnum;
 (function (DirectoryFieldsEnum) {
     DirectoryFieldsEnum["sourceInstanceName"] = "sourceInstanceName";
     DirectoryFieldsEnum["absolutePath"] = "absolutePath";
@@ -122,8 +119,8 @@ var DirectoryFieldsEnum;
     DirectoryFieldsEnum["internal___mediaType"] = "internal___mediaType";
     DirectoryFieldsEnum["internal___owner"] = "internal___owner";
     DirectoryFieldsEnum["internal___type"] = "internal___type";
-})(DirectoryFieldsEnum = exports.DirectoryFieldsEnum || (exports.DirectoryFieldsEnum = {}));
-var FileFieldsEnum;
+})(DirectoryFieldsEnum || (DirectoryFieldsEnum = {}));
+export var FileFieldsEnum;
 (function (FileFieldsEnum) {
     FileFieldsEnum["sourceInstanceName"] = "sourceInstanceName";
     FileFieldsEnum["absolutePath"] = "absolutePath";
@@ -513,8 +510,8 @@ var FileFieldsEnum;
     FileFieldsEnum["internal___mediaType"] = "internal___mediaType";
     FileFieldsEnum["internal___owner"] = "internal___owner";
     FileFieldsEnum["internal___type"] = "internal___type";
-})(FileFieldsEnum = exports.FileFieldsEnum || (exports.FileFieldsEnum = {}));
-var HeadingsMdx;
+})(FileFieldsEnum || (FileFieldsEnum = {}));
+export var HeadingsMdx;
 (function (HeadingsMdx) {
     HeadingsMdx["h1"] = "h1";
     HeadingsMdx["h2"] = "h2";
@@ -522,8 +519,8 @@ var HeadingsMdx;
     HeadingsMdx["h4"] = "h4";
     HeadingsMdx["h5"] = "h5";
     HeadingsMdx["h6"] = "h6";
-})(HeadingsMdx = exports.HeadingsMdx || (exports.HeadingsMdx = {}));
-var ImageCropFocus;
+})(HeadingsMdx || (HeadingsMdx = {}));
+export var ImageCropFocus;
 (function (ImageCropFocus) {
     ImageCropFocus["CENTER"] = "CENTER";
     ImageCropFocus["NORTH"] = "NORTH";
@@ -536,16 +533,16 @@ var ImageCropFocus;
     ImageCropFocus["NORTHWEST"] = "NORTHWEST";
     ImageCropFocus["ENTROPY"] = "ENTROPY";
     ImageCropFocus["ATTENTION"] = "ATTENTION";
-})(ImageCropFocus = exports.ImageCropFocus || (exports.ImageCropFocus = {}));
-var ImageFit;
+})(ImageCropFocus || (ImageCropFocus = {}));
+export var ImageFit;
 (function (ImageFit) {
     ImageFit["COVER"] = "COVER";
     ImageFit["CONTAIN"] = "CONTAIN";
     ImageFit["FILL"] = "FILL";
     ImageFit["INSIDE"] = "INSIDE";
     ImageFit["OUTSIDE"] = "OUTSIDE";
-})(ImageFit = exports.ImageFit || (exports.ImageFit = {}));
-var ImageFormat;
+})(ImageFit || (ImageFit = {}));
+export var ImageFormat;
 (function (ImageFormat) {
     ImageFormat["NO_CHANGE"] = "NO_CHANGE";
     ImageFormat["AUTO"] = "AUTO";
@@ -553,21 +550,21 @@ var ImageFormat;
     ImageFormat["PNG"] = "PNG";
     ImageFormat["WEBP"] = "WEBP";
     ImageFormat["AVIF"] = "AVIF";
-})(ImageFormat = exports.ImageFormat || (exports.ImageFormat = {}));
-var ImageLayout;
+})(ImageFormat || (ImageFormat = {}));
+export var ImageLayout;
 (function (ImageLayout) {
     ImageLayout["FIXED"] = "FIXED";
     ImageLayout["FULL_WIDTH"] = "FULL_WIDTH";
     ImageLayout["CONSTRAINED"] = "CONSTRAINED";
-})(ImageLayout = exports.ImageLayout || (exports.ImageLayout = {}));
-var ImagePlaceholder;
+})(ImageLayout || (ImageLayout = {}));
+export var ImagePlaceholder;
 (function (ImagePlaceholder) {
     ImagePlaceholder["DOMINANT_COLOR"] = "DOMINANT_COLOR";
     ImagePlaceholder["TRACED_SVG"] = "TRACED_SVG";
     ImagePlaceholder["BLURRED"] = "BLURRED";
     ImagePlaceholder["NONE"] = "NONE";
-})(ImagePlaceholder = exports.ImagePlaceholder || (exports.ImagePlaceholder = {}));
-var ImageSharpFieldsEnum;
+})(ImagePlaceholder || (ImagePlaceholder = {}));
+export var ImageSharpFieldsEnum;
 (function (ImageSharpFieldsEnum) {
     ImageSharpFieldsEnum["fixed___base64"] = "fixed___base64";
     ImageSharpFieldsEnum["fixed___tracedSVG"] = "fixed___tracedSVG";
@@ -687,14 +684,14 @@ var ImageSharpFieldsEnum;
     ImageSharpFieldsEnum["internal___mediaType"] = "internal___mediaType";
     ImageSharpFieldsEnum["internal___owner"] = "internal___owner";
     ImageSharpFieldsEnum["internal___type"] = "internal___type";
-})(ImageSharpFieldsEnum = exports.ImageSharpFieldsEnum || (exports.ImageSharpFieldsEnum = {}));
-var MarkdownExcerptFormats;
+})(ImageSharpFieldsEnum || (ImageSharpFieldsEnum = {}));
+export var MarkdownExcerptFormats;
 (function (MarkdownExcerptFormats) {
     MarkdownExcerptFormats["PLAIN"] = "PLAIN";
     MarkdownExcerptFormats["HTML"] = "HTML";
     MarkdownExcerptFormats["MARKDOWN"] = "MARKDOWN";
-})(MarkdownExcerptFormats = exports.MarkdownExcerptFormats || (exports.MarkdownExcerptFormats = {}));
-var MarkdownHeadingLevels;
+})(MarkdownExcerptFormats || (MarkdownExcerptFormats = {}));
+export var MarkdownHeadingLevels;
 (function (MarkdownHeadingLevels) {
     MarkdownHeadingLevels["h1"] = "h1";
     MarkdownHeadingLevels["h2"] = "h2";
@@ -702,8 +699,8 @@ var MarkdownHeadingLevels;
     MarkdownHeadingLevels["h4"] = "h4";
     MarkdownHeadingLevels["h5"] = "h5";
     MarkdownHeadingLevels["h6"] = "h6";
-})(MarkdownHeadingLevels = exports.MarkdownHeadingLevels || (exports.MarkdownHeadingLevels = {}));
-var MarkdownRemarkFieldsEnum;
+})(MarkdownHeadingLevels || (MarkdownHeadingLevels = {}));
+export var MarkdownRemarkFieldsEnum;
 (function (MarkdownRemarkFieldsEnum) {
     MarkdownRemarkFieldsEnum["id"] = "id";
     MarkdownRemarkFieldsEnum["frontmatter___title"] = "frontmatter___title";
@@ -856,8 +853,8 @@ var MarkdownRemarkFieldsEnum;
     MarkdownRemarkFieldsEnum["internal___mediaType"] = "internal___mediaType";
     MarkdownRemarkFieldsEnum["internal___owner"] = "internal___owner";
     MarkdownRemarkFieldsEnum["internal___type"] = "internal___type";
-})(MarkdownRemarkFieldsEnum = exports.MarkdownRemarkFieldsEnum || (exports.MarkdownRemarkFieldsEnum = {}));
-var MdxFieldsEnum;
+})(MarkdownRemarkFieldsEnum || (MarkdownRemarkFieldsEnum = {}));
+export var MdxFieldsEnum;
 (function (MdxFieldsEnum) {
     MdxFieldsEnum["rawBody"] = "rawBody";
     MdxFieldsEnum["fileAbsolutePath"] = "fileAbsolutePath";
@@ -961,8 +958,8 @@ var MdxFieldsEnum;
     MdxFieldsEnum["internal___mediaType"] = "internal___mediaType";
     MdxFieldsEnum["internal___owner"] = "internal___owner";
     MdxFieldsEnum["internal___type"] = "internal___type";
-})(MdxFieldsEnum = exports.MdxFieldsEnum || (exports.MdxFieldsEnum = {}));
-var PotraceTurnPolicy;
+})(MdxFieldsEnum || (MdxFieldsEnum = {}));
+export var PotraceTurnPolicy;
 (function (PotraceTurnPolicy) {
     PotraceTurnPolicy["TURNPOLICY_BLACK"] = "TURNPOLICY_BLACK";
     PotraceTurnPolicy["TURNPOLICY_WHITE"] = "TURNPOLICY_WHITE";
@@ -970,8 +967,8 @@ var PotraceTurnPolicy;
     PotraceTurnPolicy["TURNPOLICY_RIGHT"] = "TURNPOLICY_RIGHT";
     PotraceTurnPolicy["TURNPOLICY_MINORITY"] = "TURNPOLICY_MINORITY";
     PotraceTurnPolicy["TURNPOLICY_MAJORITY"] = "TURNPOLICY_MAJORITY";
-})(PotraceTurnPolicy = exports.PotraceTurnPolicy || (exports.PotraceTurnPolicy = {}));
-var SiteBuildMetadataFieldsEnum;
+})(PotraceTurnPolicy || (PotraceTurnPolicy = {}));
+export var SiteBuildMetadataFieldsEnum;
 (function (SiteBuildMetadataFieldsEnum) {
     SiteBuildMetadataFieldsEnum["id"] = "id";
     SiteBuildMetadataFieldsEnum["parent___id"] = "parent___id";
@@ -1060,8 +1057,8 @@ var SiteBuildMetadataFieldsEnum;
     SiteBuildMetadataFieldsEnum["internal___owner"] = "internal___owner";
     SiteBuildMetadataFieldsEnum["internal___type"] = "internal___type";
     SiteBuildMetadataFieldsEnum["buildTime"] = "buildTime";
-})(SiteBuildMetadataFieldsEnum = exports.SiteBuildMetadataFieldsEnum || (exports.SiteBuildMetadataFieldsEnum = {}));
-var SiteFieldsEnum;
+})(SiteBuildMetadataFieldsEnum || (SiteBuildMetadataFieldsEnum = {}));
+export var SiteFieldsEnum;
 (function (SiteFieldsEnum) {
     SiteFieldsEnum["buildTime"] = "buildTime";
     SiteFieldsEnum["siteMetadata___title"] = "siteMetadata___title";
@@ -1157,8 +1154,8 @@ var SiteFieldsEnum;
     SiteFieldsEnum["internal___mediaType"] = "internal___mediaType";
     SiteFieldsEnum["internal___owner"] = "internal___owner";
     SiteFieldsEnum["internal___type"] = "internal___type";
-})(SiteFieldsEnum = exports.SiteFieldsEnum || (exports.SiteFieldsEnum = {}));
-var SiteFunctionFieldsEnum;
+})(SiteFieldsEnum || (SiteFieldsEnum = {}));
+export var SiteFunctionFieldsEnum;
 (function (SiteFunctionFieldsEnum) {
     SiteFunctionFieldsEnum["functionRoute"] = "functionRoute";
     SiteFunctionFieldsEnum["pluginName"] = "pluginName";
@@ -1253,8 +1250,8 @@ var SiteFunctionFieldsEnum;
     SiteFunctionFieldsEnum["internal___mediaType"] = "internal___mediaType";
     SiteFunctionFieldsEnum["internal___owner"] = "internal___owner";
     SiteFunctionFieldsEnum["internal___type"] = "internal___type";
-})(SiteFunctionFieldsEnum = exports.SiteFunctionFieldsEnum || (exports.SiteFunctionFieldsEnum = {}));
-var SitePageFieldsEnum;
+})(SiteFunctionFieldsEnum || (SiteFunctionFieldsEnum = {}));
+export var SitePageFieldsEnum;
 (function (SitePageFieldsEnum) {
     SitePageFieldsEnum["path"] = "path";
     SitePageFieldsEnum["component"] = "component";
@@ -1446,8 +1443,8 @@ var SitePageFieldsEnum;
     SitePageFieldsEnum["pluginCreator___packageJson___peerDependencies___version"] = "pluginCreator___packageJson___peerDependencies___version";
     SitePageFieldsEnum["pluginCreator___packageJson___keywords"] = "pluginCreator___packageJson___keywords";
     SitePageFieldsEnum["pluginCreatorId"] = "pluginCreatorId";
-})(SitePageFieldsEnum = exports.SitePageFieldsEnum || (exports.SitePageFieldsEnum = {}));
-var SitePluginFieldsEnum;
+})(SitePageFieldsEnum || (SitePageFieldsEnum = {}));
+export var SitePluginFieldsEnum;
 (function (SitePluginFieldsEnum) {
     SitePluginFieldsEnum["id"] = "id";
     SitePluginFieldsEnum["parent___id"] = "parent___id";
@@ -1593,9 +1590,9 @@ var SitePluginFieldsEnum;
     SitePluginFieldsEnum["packageJson___peerDependencies___name"] = "packageJson___peerDependencies___name";
     SitePluginFieldsEnum["packageJson___peerDependencies___version"] = "packageJson___peerDependencies___version";
     SitePluginFieldsEnum["packageJson___keywords"] = "packageJson___keywords";
-})(SitePluginFieldsEnum = exports.SitePluginFieldsEnum || (exports.SitePluginFieldsEnum = {}));
-var SortOrderEnum;
+})(SitePluginFieldsEnum || (SitePluginFieldsEnum = {}));
+export var SortOrderEnum;
 (function (SortOrderEnum) {
     SortOrderEnum["ASC"] = "ASC";
     SortOrderEnum["DESC"] = "DESC";
-})(SortOrderEnum = exports.SortOrderEnum || (exports.SortOrderEnum = {}));
+})(SortOrderEnum || (SortOrderEnum = {}));

@@ -1,13 +1,7 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.PreviewContainer = exports.GlobalStyles = void 0;
-const styled_1 = __importDefault(require("@emotion/styled"));
-const react_1 = __importDefault(require("react"));
-const react_2 = require("@emotion/react");
-const GlobalStyles = () => (react_1.default.createElement(react_2.Global, { styles: react_2.css `
+import styled from '@emotion/styled';
+import React from 'react';
+import { Global, css } from '@emotion/react';
+export const GlobalStyles = () => (React.createElement(Global, { styles: css `
       @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
       html,
       body,
@@ -49,8 +43,7 @@ const GlobalStyles = () => (react_1.default.createElement(react_2.Global, { styl
         }
       }
     ` }));
-exports.GlobalStyles = GlobalStyles;
-exports.PreviewContainer = styled_1.default.div `
+export const PreviewContainer = styled.div `
   height: 100vh;
   & .SubGrid {
     height: auto;

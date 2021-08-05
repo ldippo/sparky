@@ -1,19 +1,14 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const media_query_1 = require("@react-hook/media-query");
-const framer_motion_1 = require("framer-motion");
-const SideNav_styles_1 = require("./SideNav.styles");
-const SideNav = react_1.default.memo(function SideNav({ navItems, selectedIdx, contrastColors, }) {
-    const isTiny = media_query_1.useMediaQuery('only screen and (max-width: 768px)');
+import React from 'react';
+import { useMediaQuery } from '@react-hook/media-query';
+import { AnimatePresence } from 'framer-motion';
+import { StyledSideNav, SideNavItem } from './SideNav.styles';
+const SideNav = React.memo(function SideNav({ navItems, selectedIdx, contrastColors, }) {
+    const isTiny = useMediaQuery('only screen and (max-width: 768px)');
     if (navItems.length <= 1)
-        return react_1.default.createElement(react_1.default.Fragment, null);
-    return (react_1.default.createElement(framer_motion_1.AnimatePresence, null,
-        react_1.default.createElement(SideNav_styles_1.StyledSideNav, { tiny: isTiny }, navItems.map(({ text, onClick }, idx) => {
-            return (react_1.default.createElement(SideNav_styles_1.SideNavItem, { initial: {
+        return React.createElement(React.Fragment, null);
+    return (React.createElement(AnimatePresence, null,
+        React.createElement(StyledSideNav, { tiny: isTiny }, navItems.map(({ text, onClick }, idx) => {
+            return (React.createElement(SideNavItem, { initial: {
                     x: -100,
                     opacity: 0,
                     color: 'white',
@@ -26,7 +21,7 @@ const SideNav = react_1.default.memo(function SideNav({ navItems, selectedIdx, c
                         ? 'rgba(0,0,0,0.5)'
                         : 'rgba(255,255,255,0.5)',
                 }, key: text, text: text, onClick: onClick, selected: idx === selectedIdx },
-                react_1.default.createElement("p", null, text)));
+                React.createElement("p", null, text)));
         }))));
 });
-exports.default = SideNav;
+export default SideNav;

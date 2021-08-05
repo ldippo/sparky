@@ -1,12 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Hamburger = exports.LinkContainer = exports.DrawerLinks = exports.Links = exports.DrawerNav = exports.TinyNav = exports.Nav = void 0;
-const styled_1 = __importDefault(require("@emotion/styled"));
-const framer_motion_1 = require("framer-motion");
-exports.Nav = styled_1.default(framer_motion_1.motion.div)({
+import styled from "@emotion/styled";
+import { motion } from "framer-motion";
+export const Nav = styled(motion.div)({
     flex: 0,
     display: "flex",
     height: 72,
@@ -15,7 +9,7 @@ exports.Nav = styled_1.default(framer_motion_1.motion.div)({
     position: "absolute",
     zIndex: 100,
 });
-exports.TinyNav = styled_1.default(framer_motion_1.motion.div)({
+export const TinyNav = styled(motion.div)({
     flex: 1,
     display: "flex",
     height: 75,
@@ -25,7 +19,7 @@ exports.TinyNav = styled_1.default(framer_motion_1.motion.div)({
     justifyContent: "space-between",
     zIndex: 100,
 });
-exports.DrawerNav = styled_1.default(framer_motion_1.motion.div)({
+export const DrawerNav = styled(motion.div)({
     flex: 0,
     display: "flex",
     height: "100%",
@@ -37,7 +31,7 @@ exports.DrawerNav = styled_1.default(framer_motion_1.motion.div)({
     flexDirection: "column",
     zIndex: 100,
 });
-exports.Links = styled_1.default.div({
+export const Links = styled.div({
     flex: 3,
     display: "flex",
     height: "100%",
@@ -47,7 +41,7 @@ exports.Links = styled_1.default.div({
     color: "black",
     paddingRight: 24,
 });
-exports.DrawerLinks = styled_1.default(framer_motion_1.motion.div)({
+export const DrawerLinks = styled(motion.div)({
     display: "flex",
     height: "100%",
     maxHeight: 300,
@@ -56,13 +50,13 @@ exports.DrawerLinks = styled_1.default(framer_motion_1.motion.div)({
     alignItems: "center",
     zIndex: 100,
 });
-exports.LinkContainer = styled_1.default(framer_motion_1.motion.div) `
+export const LinkContainer = styled(motion.div) `
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
     margin-right: 2rem;
   `;
-exports.Hamburger = styled_1.default(framer_motion_1.motion.div)({
+export const Hamburger = styled(motion.div)({
     paddingRight: 24,
     display: "flex",
     justifyContent: "center",
