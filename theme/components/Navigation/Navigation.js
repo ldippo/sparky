@@ -7,6 +7,7 @@ import { TinyNav, Nav, DrawerNav, DrawerLinks, LinkContainer, Hamburger, Links, 
 import LogoContainer from '../Logo/LogoContainer.styles';
 import Link from '../Link/Link';
 import SVGLogo from '../Logo/SVGLogo';
+import { css } from '@emotion/react';
 const Navigation = function Navigation({ navData, contrastColors, }) {
     const isTiny = useMediaQuery('only screen and (max-width: 768px)');
     const [openDrawer, setOpenDrawer] = React.useState(false);
@@ -29,7 +30,12 @@ const Navigation = function Navigation({ navData, contrastColors, }) {
             } },
             React.createElement(LogoContainer, null,
                 React.createElement(Link, { to: "", contrastColors: contrastColors },
-                    React.createElement(SVGLogo, null))),
+                    React.createElement(SVGLogo, { className: css `
+                img path {
+                  fill: inherit;
+                  color: inherit;
+                }
+              ` }))),
             !isTiny && (React.createElement(Links, null, navData.map(({ label, path }) => (React.createElement(LinkContainer, { key: label },
                 React.createElement(Link, { to: path, contrastColors: contrastColors }, label)))))),
             isTiny && (React.createElement(Hamburger, { onClick: openDrawerCb },

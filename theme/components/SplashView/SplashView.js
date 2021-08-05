@@ -1,5 +1,6 @@
 import React from 'react';
 import GatLink from 'gatsby-link';
+import { css } from '@emotion/react';
 import LogoContainer from '../Logo/LogoContainer.styles';
 import SVGLogo from '../Logo/SVGLogo';
 import { CTAButtonLarge } from '../CTAButton/CTAButton.styles';
@@ -8,12 +9,14 @@ import { SplashContentContainer, ImageContainer, } from '../Containers/Container
 const SplashView = ({ videoSrc, imageSrc, overlayColor }) => {
     const content = (React.createElement(React.Fragment, null,
         React.createElement(LogoContainer, { splash: true },
-            React.createElement(SVGLogo, { style: {
-                    fill: 'white',
-                    color: 'white',
-                    width: '100%',
-                    height: 'auto',
-                } })),
+            React.createElement(SVGLogo, { className: css `
+            img path {
+              fill: white;
+              color: 'white';
+              width: '100%';
+              height: 'auto';
+            }
+          ` })),
         React.createElement(GatLink, { to: "/contact" },
             React.createElement(CTAButtonLarge, null, "Contact Us"))));
     return (React.createElement(React.Fragment, null, videoSrc ? (React.createElement(BGVideo, { src: videoSrc, bgColor: overlayColor },
