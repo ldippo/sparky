@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
+import { ReactSVG } from 'react-svg';
 const SVGLogo = function SVGLogo({ className }) {
-    return (React.createElement("svg", null,
-        React.createElement("use", { href: "/logo.svg", className: className })));
+    return React.createElement(ReactSVG, { src: "/logo.svg" });
 };
 export default SVGLogo;

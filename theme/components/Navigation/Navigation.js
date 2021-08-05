@@ -30,12 +30,16 @@ const Navigation = function Navigation({ navData, contrastColors, }) {
             } },
             React.createElement(LogoContainer, null,
                 React.createElement(Link, { to: "", contrastColors: contrastColors },
-                    React.createElement(SVGLogo, { css: css `
-                path {
-                  fill: inherit;
-                  color: inherit;
-                }
-              ` }))),
+                    React.createElement(SVGLogo, { css: css({
+                            '& path': {
+                                fill: contrastColors[0],
+                                color: contrastColors[0],
+                            },
+                            '& svg': {
+                                height: 200,
+                                width: 200,
+                            },
+                        }) }))),
             !isTiny && (React.createElement(Links, null, navData.map(({ label, path }) => (React.createElement(LinkContainer, { key: label },
                 React.createElement(Link, { to: path, contrastColors: contrastColors }, label)))))),
             isTiny && (React.createElement(Hamburger, { onClick: openDrawerCb },
