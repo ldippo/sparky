@@ -82,8 +82,8 @@ const Navigation = function Navigation({
             <SVGLogo
               css={css({
                 '& path': {
-                  fill: contrastColors[0],
-                  color: contrastColors[0],
+                  fill: contrastColors[1],
+                  color: contrastColors[1],
                 },
                 '& svg': {
                   height: 200,
