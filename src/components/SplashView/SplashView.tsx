@@ -19,14 +19,20 @@ const SplashView: React.FC<{
     <>
       <LogoContainer splash>
         <SVGLogo
-          css={css`
-            path {
-              fill: white;
-              color: 'white';
-              width: '100%';
-              height: 'auto';
-            }
-          `}
+          css={css({
+            '& svg': {
+              color: 'white',
+              width: '100%',
+              height: 'auto',
+              fill: 'white',
+            },
+            '& path': {
+              fill: 'white',
+              color: 'white',
+              width: '100%',
+              height: 'auto',
+            },
+          })}
         />
       </LogoContainer>
       <GatLink to="/contact">

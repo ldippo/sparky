@@ -9,14 +9,20 @@ import { SplashContentContainer, ImageContainer, } from '../Containers/Container
 const SplashView = ({ videoSrc, imageSrc, overlayColor }) => {
     const content = (React.createElement(React.Fragment, null,
         React.createElement(LogoContainer, { splash: true },
-            React.createElement(SVGLogo, { css: css `
-            path {
-              fill: white;
-              color: 'white';
-              width: '100%';
-              height: 'auto';
-            }
-          ` })),
+            React.createElement(SVGLogo, { css: css({
+                    '& svg': {
+                        color: 'white',
+                        width: '100%',
+                        height: 'auto',
+                        fill: 'white',
+                    },
+                    '& path': {
+                        fill: 'white',
+                        color: 'white',
+                        width: '100%',
+                        height: 'auto',
+                    },
+                }) })),
         React.createElement(GatLink, { to: "/contact" },
             React.createElement(CTAButtonLarge, null, "Contact Us"))));
     return (React.createElement(React.Fragment, null, videoSrc ? (React.createElement(BGVideo, { src: videoSrc, bgColor: overlayColor },
