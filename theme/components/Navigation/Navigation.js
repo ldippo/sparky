@@ -35,10 +35,6 @@ const Navigation = function Navigation({ navData, contrastColors, }) {
                                 fill: contrastColors[1],
                                 color: contrastColors[1],
                             },
-                            '& svg': {
-                                height: 200,
-                                width: 200,
-                            },
                         }) }))),
             !isTiny && (React.createElement(Links, null, navData.map(({ label, path }) => (React.createElement(LinkContainer, { key: label },
                 React.createElement(Link, { to: path, contrastColors: contrastColors }, label)))))),

@@ -85,10 +85,6 @@ const Navigation = function Navigation({
                   fill: contrastColors[1],
                   color: contrastColors[1],
                 },
-                '& svg': {
-                  height: 200,
-                  width: 200,
-                },
               })}
             />
           </Link>
