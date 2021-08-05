@@ -3,7 +3,11 @@
 import React from 'react';
 
 const SVGLogo: React.FC<any> = function SVGLogo({ className }) {
-  return <img className={className} src={'/logo.svg'} alt="Logo" />;
+  return (
+    <svg>
+      <use href="/logo.svg" className={className} />
+    </svg>
+  );
 };
 
 export default SVGLogo;
