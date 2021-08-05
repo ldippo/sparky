@@ -62,7 +62,6 @@ module.exports = (_options) => ({
 				manualInit: true
 			},
 		},
-		'gatsby-plugin-netlify',
 		'gatsby-plugin-extract-schema',
 	],
 });
