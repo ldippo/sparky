@@ -20,6 +20,7 @@ const SplashView: React.FC<{
       <LogoContainer splash>
         <SVGLogo
           css={css({
+            width: '100%',
             '& svg': {
               color: 'white',
               width: '100%',
