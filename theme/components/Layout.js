@@ -1,7 +1,6 @@
 import React from 'react';
 import { Global, css } from '@emotion/react';
 import { useMediaQuery } from '@react-hook/media-query';
-import { useColor } from 'color-thief-react';
 import SectionItem from './SectionItem';
 import ContactForm from './ContactForm';
 import Footer from './Footer';
@@ -12,18 +11,7 @@ import Navigation from './Navigation';
 import { AppContainer, MainContainer, ContentContainer, } from './Containers/Containers.styles';
 const Layout = React.memo(function Layout({ navData, sectionData, templateKey, }) {
     const [selectedSection, setSelectedSection] = React.useState(0);
-    const mediaUrl = React.useMemo(() => sectionData[selectedSection]?.slideMedia?.publicURL, [sectionData, selectedSection]);
-    const { data: colorData, loading } = useColor(mediaUrl || '#', 'hex');
-    const [contrastColors, setContrastColors] = React.useState([
-        'white',
-        'black',
-    ]);
-    React.useEffect(() => {
-        if (!mediaUrl)
-            setContrastColors(['white', 'black']);
-        else if (colorData && !loading)
-            setContrastColors(pickTextColor(colorData, 'white', 'black'));
-    }, [colorData, loading, mediaUrl]);
+    const contrastColors = ['white', 'black'];
     const navItems = React.useMemo(() => sectionData.map(({ title }, i) => ({
         onClick() {
             setSelectedSection(i);
