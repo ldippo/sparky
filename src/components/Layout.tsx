@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
-import { Global, css } from '@emotion/react';
+import { Global, css, CacheProvider } from '@emotion/react';
 import { useMediaQuery } from '@react-hook/media-query';
 import { SectionFragment } from '../templates/queryInfo.gql';
 import SectionItem from './SectionItem';
@@ -15,6 +16,10 @@ import {
   ContentContainer,
 } from './Containers/Containers.styles';
 import { Maybe } from '../generated/graphql';
+import { Helmet } from 'react-helmet';
+
+// eslint-disable-next-line no-var
+declare var dataLayer: any;
 
 export interface SectionItemProps {
   title: Maybe<string> | undefined;
@@ -24,6 +29,7 @@ export interface SectionItemProps {
   body: SectionFragment['body'];
   actionButton: SectionFragment['actionButton'];
 }
+
 const Layout = React.memo(function Layout({
   navData,
   sectionData,
@@ -72,9 +78,34 @@ const Layout = React.memo(function Layout({
 
   const carouselRef = React.useRef<any>();
   const isTiny = useMediaQuery('only screen and (max-width: 768px)');
-
+  // function initAnalytics(dataLayer: any[]) {
+  //   function gtag(...args: any) {
+  //     dataLayer.push(...args);
+  //   }
+  //   gtag('js', new Date());
+  //   gtag('config', 'G-ESEEVB8WVJ');
+  // }
   return (
     <>
+      <Helmet>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-ESEEVB8WVJ"
+        ></script>
+
+        <script>
+          {`
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ESEEVB8WVJ');
+  `}
+        </script>
+        {/* {((window as any).dataLayer = (window as any).dataLayer || [])}
+          {initAnalytics(dataLayer)} */}
+        {/* </script> */}
+      </Helmet>
       <Global
         styles={css`
           @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');

@@ -15,9 +15,17 @@ const IndexPage: React.FC<any> = (props) => {
   }));
 
   const sectionData: SectionFragment[] = [];
+  const selectedPage = pageData.find(
+    ({ path }: any) => path === props.path.substr(1)
+  );
+  const templateKey = selectedPage?.frontmatter?.templateKey || 'home';
 
   return (
-    <Layout navData={navData} sectionData={sectionData} templateKey="home" />
+    <Layout
+      navData={navData}
+      sectionData={sectionData}
+      templateKey={templateKey}
+    />
   );
 };
 
