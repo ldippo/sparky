@@ -40,6 +40,7 @@ const Layout = React.memo(function Layout({ navData, sectionData, templateKey, }
     // }
     return (React.createElement(React.Fragment, null,
         React.createElement(Helmet, null,
+            React.createElement("script", { src: "https://www.google.com/recaptcha/api.js", async: true, defer: true }),
             React.createElement("script", { async: true, src: "https://www.googletagmanager.com/gtag/js?id=G-ESEEVB8WVJ" }),
             React.createElement("script", null, `
   window.dataLayer = window.dataLayer || [];
