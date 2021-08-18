@@ -82,6 +82,12 @@ const ContactForm = () => {
             <>
               <pre>{JSON.stringify(values, null, 4)}</pre>
               <FormContainer>
+                <div
+                  className="g-recaptcha"
+                  data-sitekey="6LfFgw0cAAAAABY2QhFXZO_6cFGgzXF-4ACBNik3"
+                >
+                  &nbsp;
+                </div>
                 <FormItem>
                   <FormLabel htmlFor="name">Full name *</FormLabel>
                   <FormInputFormik

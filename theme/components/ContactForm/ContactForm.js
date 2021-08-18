@@ -43,6 +43,7 @@ const ContactForm = () => {
                 } }, ({ submitForm, isValid, values }) => (React.createElement(React.Fragment, null,
                 React.createElement("pre", null, JSON.stringify(values, null, 4)),
                 React.createElement(FormContainer, null,
+                    React.createElement("div", { className: "g-recaptcha", "data-sitekey": "6LfFgw0cAAAAABY2QhFXZO_6cFGgzXF-4ACBNik3" }, "\u00A0"),
                     React.createElement(FormItem, null,
                         React.createElement(FormLabel, { htmlFor: "name" }, "Full name *"),
                         React.createElement(FormInputFormik, { name: "from_name", type: "text", placeholder: "eg. John Doe" })),
