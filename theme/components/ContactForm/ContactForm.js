@@ -5,7 +5,7 @@ import { FormContainer, FormItem, FormLabel, FormInput, FormTextArea, } from '..
 import { TwoColumnContainer, DetailsContainer, DetailsLabel, DetailsContent, } from '../CardTwoColumn/CardTwoColumn.styles';
 import ContactFormTextTitle from './ContactForm.styles';
 import { CTAButton } from '../CTAButton/CTAButton.styles';
-import { Formik, Field } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 import { init, send } from 'emailjs-com';
 // import ReCAPTCHA from "react-google-recaptcha";
@@ -33,22 +33,22 @@ const ContactForm = () => {
                     React.createElement(DetailsLabel, null, "\uD83D\uDCE7 Send us an email"),
                     React.createElement(DetailsContent, null, "info@vft.technology"))),
             React.createElement(Formik, { validationSchema: schema, initialValues: {}, onSubmit: (templateParams) => {
-                    send('default_service', 'template_la2u6re', templateParams);
-                } }, ({ submitForm, isValid }) => (React.createElement(FormContainer, { method: "post", "netlify-honeypot": "bot-field", "data-netlify-recaptcha": "true", "data-netlify": "true", name: "contact" },
-                React.createElement("input", { type: "hidden", name: "bot-field" }),
-                React.createElement("input", { type: "hidden", name: "form-name", value: "contact" }),
-                React.createElement(FormItem, null,
-                    React.createElement(FormLabel, { htmlFor: "name" }, "Full name *"),
-                    React.createElement(Field, { name: "from_name", type: "text", placeholder: "eg. John Doe", required: true, "aria-require": true, component: FormInput })),
-                React.createElement(FormItem, null,
-                    React.createElement(FormLabel, { htmlFor: "email" }, "Your email *"),
-                    React.createElement(Field, { type: "email", id: "email", name: "email", placeholder: "eg. example@email.com", required: true, "aria-required": true, component: FormInput })),
-                React.createElement(FormItem, null,
-                    React.createElement(FormLabel, { htmlFor: "phone" }, "Phone number"),
-                    React.createElement(Field, { type: "tel", id: "phone", name: "phone", placeholder: "eg. 123-456-7890", component: FormInput })),
-                React.createElement(FormItem, null,
-                    React.createElement(FormLabel, { htmlFor: "message" }, "Message *"),
-                    React.createElement(Field, { rows: 5, name: "message", id: "message", required: true, "aria-required": true, placeholder: "Hello! Write us a message here.", component: FormTextArea })),
-                React.createElement(CTAButton, { type: "submit", onClick: submitForm, disabled: !isValid }, "Submit Form")))))));
+                    console.log('is this working', templateParams);
+                    send('default_service', 'template_la2u6re', templateParams).then((x) => console.log({ result: x }));
+                } }, ({ submitForm, isValid }) => (React.createElement(FormContainer, null,
+                React.createElement(Form, null,
+                    React.createElement(FormItem, null,
+                        React.createElement(FormLabel, { htmlFor: "name" }, "Full name *"),
+                        React.createElement(Field, { name: "from_name", type: "text", placeholder: "eg. John Doe", component: FormInput })),
+                    React.createElement(FormItem, null,
+                        React.createElement(FormLabel, { htmlFor: "email" }, "Your email *"),
+                        React.createElement(Field, { type: "email", name: "email", placeholder: "eg. example@email.com", component: FormInput })),
+                    React.createElement(FormItem, null,
+                        React.createElement(FormLabel, { htmlFor: "phone" }, "Phone number"),
+                        React.createElement(Field, { type: "tel", name: "phone", placeholder: "eg. 123-456-7890", component: FormInput })),
+                    React.createElement(FormItem, null,
+                        React.createElement(FormLabel, { htmlFor: "message" }, "Message *"),
+                        React.createElement(Field, { rows: 5, name: "message", placeholder: "Hello! Write us a message here.", component: FormTextArea })),
+                    React.createElement(CTAButton, { type: "submit", onClick: submitForm, disabled: !isValid }, "Submit Form"))))))));
 };
 export default React.memo(ContactForm);

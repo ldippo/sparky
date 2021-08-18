@@ -20,7 +20,7 @@ import {
 
 import ContactFormTextTitle from './ContactForm.styles';
 import { CTAButton } from '../CTAButton/CTAButton.styles';
-import { Formik, Field } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 import { init, send } from 'emailjs-com';
 // import ReCAPTCHA from "react-google-recaptcha";
@@ -56,68 +56,59 @@ const ContactForm = () => {
           validationSchema={schema}
           initialValues={{}}
           onSubmit={(templateParams) => {
-            send('default_service', 'template_la2u6re', templateParams);
+            console.log('is this working', templateParams);
+            send('default_service', 'template_la2u6re', templateParams).then(
+              (x) => console.log({ result: x })
+            );
           }}
         >
           {({ submitForm, isValid }) => (
-            <FormContainer
-              method="post"
-              netlify-honeypot="bot-field"
-              data-netlify-recaptcha="true"
-              data-netlify="true"
-              name="contact"
-            >
-              <input type="hidden" name="bot-field" />
-              <input type="hidden" name="form-name" value="contact" />
-
-              <FormItem>
-                <FormLabel htmlFor="name">Full name *</FormLabel>
-                <Field
-                  name="from_name"
-                  type="text"
-                  placeholder="eg. John Doe"
-                  required
-                  aria-require
-                  component={FormInput}
-                />
-              </FormItem>
-              <FormItem>
-                <FormLabel htmlFor="email">Your email *</FormLabel>
-                <Field
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="eg. example@email.com"
-                  required
-                  aria-required
-                  component={FormInput}
-                />
-              </FormItem>
-              <FormItem>
-                <FormLabel htmlFor="phone">Phone number</FormLabel>
-                <Field
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  placeholder="eg. 123-456-7890"
-                  component={FormInput}
-                />
-              </FormItem>
-              <FormItem>
-                <FormLabel htmlFor="message">Message *</FormLabel>
-                <Field
-                  rows={5}
-                  name="message"
-                  id="message"
-                  required
-                  aria-required
-                  placeholder="Hello! Write us a message here."
-                  component={FormTextArea}
-                />
-              </FormItem>
-              <CTAButton type="submit" onClick={submitForm} disabled={!isValid}>
-                Submit Form
-              </CTAButton>
+            <FormContainer>
+              <Form>
+                <FormItem>
+                  <FormLabel htmlFor="name">Full name *</FormLabel>
+                  <Field
+                    name="from_name"
+                    type="text"
+                    placeholder="eg. John Doe"
+                    component={FormInput}
+                  />
+                </FormItem>
+                <FormItem>
+                  <FormLabel htmlFor="email">Your email *</FormLabel>
+                  <Field
+                    type="email"
+                    name="email"
+                    placeholder="eg. example@email.com"
+                    component={FormInput}
+                  />
+                </FormItem>
+                <FormItem>
+                  <FormLabel htmlFor="phone">Phone number</FormLabel>
+                  <Field
+                    type="tel"
+                    name="phone"
+                    placeholder="eg. 123-456-7890"
+                    component={FormInput}
+                  />
+                </FormItem>
+                <FormItem>
+                  <FormLabel htmlFor="message">Message *</FormLabel>
+                  <Field
+                    rows={5}
+                    name="message"
+                    placeholder="Hello! Write us a message here."
+                    component={FormTextArea}
+                  />
+                </FormItem>
+                <CTAButton
+                  type="submit"
+                  onClick={submitForm}
+                  disabled={!isValid}
+                >
+                  Submit Form
+                </CTAButton>
+              </Form>
             </FormContainer>
           )}
         </Formik>
