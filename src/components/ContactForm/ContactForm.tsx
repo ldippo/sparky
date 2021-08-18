@@ -64,51 +64,45 @@ const ContactForm = () => {
         >
           {({ submitForm, isValid }) => (
             <FormContainer>
-              <Form>
-                <FormItem>
-                  <FormLabel htmlFor="name">Full name *</FormLabel>
-                  <Field
-                    name="from_name"
-                    type="text"
-                    placeholder="eg. John Doe"
-                    component={FormInput}
-                  />
-                </FormItem>
-                <FormItem>
-                  <FormLabel htmlFor="email">Your email *</FormLabel>
-                  <Field
-                    type="email"
-                    name="email"
-                    placeholder="eg. example@email.com"
-                    component={FormInput}
-                  />
-                </FormItem>
-                <FormItem>
-                  <FormLabel htmlFor="phone">Phone number</FormLabel>
-                  <Field
-                    type="tel"
-                    name="phone"
-                    placeholder="eg. 123-456-7890"
-                    component={FormInput}
-                  />
-                </FormItem>
-                <FormItem>
-                  <FormLabel htmlFor="message">Message *</FormLabel>
-                  <Field
-                    rows={5}
-                    name="message"
-                    placeholder="Hello! Write us a message here."
-                    component={FormTextArea}
-                  />
-                </FormItem>
-                <CTAButton
-                  type="submit"
-                  onClick={submitForm}
-                  disabled={!isValid}
-                >
-                  Submit Form
-                </CTAButton>
-              </Form>
+              <FormItem>
+                <FormLabel htmlFor="name">Full name *</FormLabel>
+                <Field
+                  name="from_name"
+                  type="text"
+                  placeholder="eg. John Doe"
+                  component={FormInput}
+                />
+              </FormItem>
+              <FormItem>
+                <FormLabel htmlFor="email">Your email *</FormLabel>
+                <Field
+                  type="email"
+                  name="email"
+                  placeholder="eg. example@email.com"
+                  component={FormInput}
+                />
+              </FormItem>
+              <FormItem>
+                <FormLabel htmlFor="phone">Phone number</FormLabel>
+                <Field
+                  type="tel"
+                  name="phone"
+                  placeholder="eg. 123-456-7890"
+                  component={FormInput}
+                />
+              </FormItem>
+              <FormItem>
+                <FormLabel htmlFor="message">Message *</FormLabel>
+                <Field
+                  rows={5}
+                  name="message"
+                  placeholder="Hello! Write us a message here."
+                  component={FormTextArea}
+                />
+              </FormItem>
+              <CTAButton type="submit" onClick={submitForm} disabled={!isValid}>
+                Submit Form
+              </CTAButton>
             </FormContainer>
           )}
         </Formik>

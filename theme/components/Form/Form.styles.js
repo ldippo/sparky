@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { mq } from '../../styles/breakpoints';
-export const FormContainer = styled.form({
+import { Form } from 'formik';
+export const FormContainer = styled(Form)({
     margin: '0 2rem',
     textAlign: 'center',
     [mq[1]]: {
