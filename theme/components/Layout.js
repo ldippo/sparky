@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { Global, css } from '@emotion/react';
 import { useMediaQuery } from '@react-hook/media-query';
@@ -9,6 +10,7 @@ import Carousel from './Carousel';
 import SplashView from './SplashView';
 import Navigation from './Navigation';
 import { AppContainer, MainContainer, ContentContainer, } from './Containers/Containers.styles';
+import { Helmet } from 'react-helmet';
 const Layout = React.memo(function Layout({ navData, sectionData, templateKey, }) {
     const [selectedSection, setSelectedSection] = React.useState(0);
     const contrastColors = ['white', 'black'];
@@ -29,7 +31,23 @@ const Layout = React.memo(function Layout({ navData, sectionData, templateKey, }
     })), [sectionData]);
     const carouselRef = React.useRef();
     const isTiny = useMediaQuery('only screen and (max-width: 768px)');
+    // function initAnalytics(dataLayer: any[]) {
+    //   function gtag(...args: any) {
+    //     dataLayer.push(...args);
+    //   }
+    //   gtag('js', new Date());
+    //   gtag('config', 'G-ESEEVB8WVJ');
+    // }
     return (React.createElement(React.Fragment, null,
+        React.createElement(Helmet, null,
+            React.createElement("script", { async: true, src: "https://www.googletagmanager.com/gtag/js?id=G-ESEEVB8WVJ" }),
+            React.createElement("script", null, `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ESEEVB8WVJ');
+  `)),
         React.createElement(Global, { styles: css `
           @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
           html,

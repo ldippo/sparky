@@ -12,7 +12,9 @@ const IndexPage = (props) => {
         templateKey: node.frontmatter?.templateKey || 'page',
     }));
     const sectionData = [];
-    return (React.createElement(Layout, { navData: navData, sectionData: sectionData, templateKey: "home" }));
+    const selectedPage = pageData.find(({ path }) => path === props.path.substr(1));
+    const templateKey = selectedPage?.frontmatter?.templateKey || 'home';
+    return (React.createElement(Layout, { navData: navData, sectionData: sectionData, templateKey: templateKey }));
 };
 export const query = graphql `
   query IndexQuery {
