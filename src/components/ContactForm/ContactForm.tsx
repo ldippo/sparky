@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
 
@@ -20,9 +21,22 @@ import {
 
 import ContactFormTextTitle from './ContactForm.styles';
 import { CTAButton } from '../CTAButton/CTAButton.styles';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, useField } from 'formik';
 import * as yup from 'yup';
 import { init, send } from 'emailjs-com';
+
+const FormInputFormik = React.memo(function FormInputFormik({
+  name,
+  multi,
+  ...props
+}: any) {
+  const [field] = useField(name);
+  return !multi ? (
+    <FormInput {...field} {...props} />
+  ) : (
+    <FormTextArea {...field} {...props} />
+  );
+});
 // import ReCAPTCHA from "react-google-recaptcha";
 const ContactForm = () => {
   const isTiny = useMediaQuery('only screen and (max-width: 768px)');
@@ -62,48 +76,52 @@ const ContactForm = () => {
             );
           }}
         >
-          {({ submitForm, isValid }) => (
-            <FormContainer>
-              <FormItem>
-                <FormLabel htmlFor="name">Full name *</FormLabel>
-                <Field
-                  name="from_name"
-                  type="text"
-                  placeholder="eg. John Doe"
-                  component={FormInput}
-                />
-              </FormItem>
-              <FormItem>
-                <FormLabel htmlFor="email">Your email *</FormLabel>
-                <Field
-                  type="email"
-                  name="email"
-                  placeholder="eg. example@email.com"
-                  component={FormInput}
-                />
-              </FormItem>
-              <FormItem>
-                <FormLabel htmlFor="phone">Phone number</FormLabel>
-                <Field
-                  type="tel"
-                  name="phone"
-                  placeholder="eg. 123-456-7890"
-                  component={FormInput}
-                />
-              </FormItem>
-              <FormItem>
-                <FormLabel htmlFor="message">Message *</FormLabel>
-                <Field
-                  rows={5}
-                  name="message"
-                  placeholder="Hello! Write us a message here."
-                  component={FormTextArea}
-                />
-              </FormItem>
-              <CTAButton type="submit" onClick={submitForm} disabled={!isValid}>
-                Submit Form
-              </CTAButton>
-            </FormContainer>
+          {({ submitForm, isValid, values }) => (
+            <>
+              <pre>{JSON.stringify(values, null, 4)}</pre>
+              <FormContainer>
+                <FormItem>
+                  <FormLabel htmlFor="name">Full name *</FormLabel>
+                  <FormInputFormik
+                    name="from_name"
+                    type="text"
+                    placeholder="eg. John Doe"
+                  />
+                </FormItem>
+                <FormItem>
+                  <FormLabel htmlFor="email">Your email *</FormLabel>
+                  <FormInputFormik
+                    type="email"
+                    name="email"
+                    placeholder="eg. example@email.com"
+                  />
+                </FormItem>
+                <FormItem>
+                  <FormLabel htmlFor="phone">Phone number</FormLabel>
+                  <FormInputFormik
+                    type="tel"
+                    name="phone"
+                    placeholder="eg. 123-456-7890"
+                  />
+                </FormItem>
+                <FormItem>
+                  <FormLabel htmlFor="message">Message *</FormLabel>
+                  <FormInputFormik
+                    rows={5}
+                    name="message"
+                    placeholder="Hello! Write us a message here."
+                    multi
+                  />
+                </FormItem>
+                <CTAButton
+                  type="submit"
+                  onClick={submitForm}
+                  disabled={!isValid}
+                >
+                  Submit Form
+                </CTAButton>
+              </FormContainer>
+            </>
           )}
         </Formik>
       </TwoColumnContainer>
