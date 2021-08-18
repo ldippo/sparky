@@ -4,95 +4,126 @@ import { useMediaQuery } from '@react-hook/media-query';
 import Card from '../Card';
 
 import {
-	FormContainer,
-	FormItem,
-	FormLabel,
-	FormInput,
-	FormTextArea,
+  FormContainer,
+  FormItem,
+  FormLabel,
+  FormInput,
+  FormTextArea,
 } from '../Form/Form.styles';
 
 import {
-	TwoColumnContainer,
-	DetailsContainer,
-	DetailsLabel,
-	DetailsContent,
+  TwoColumnContainer,
+  DetailsContainer,
+  DetailsLabel,
+  DetailsContent,
 } from '../CardTwoColumn/CardTwoColumn.styles';
 
 import ContactFormTextTitle from './ContactForm.styles';
 import { CTAButton } from '../CTAButton/CTAButton.styles';
-
+import { Formik, Field } from 'formik';
+import * as yup from 'yup';
+import { init, send } from 'emailjs-com';
 // import ReCAPTCHA from "react-google-recaptcha";
 const ContactForm = () => {
-	const isTiny = useMediaQuery('only screen and (max-width: 768px)');
-	const isBig = useMediaQuery('only screen and (min-width: 992px)');
+  const isTiny = useMediaQuery('only screen and (max-width: 768px)');
+  const isBig = useMediaQuery('only screen and (min-width: 992px)');
+  const schema = yup.object().shape({
+    from_name: yup.string().required(),
+    message: yup.string().required(),
+    email: yup.string().email().required(),
+    phone: yup.string(),
+  });
+  React.useEffect(() => {
+    init(process.env.GATSBY_EMAILKEY || '');
+  }, []);
+  return (
+    <Card>
+      <ContactFormTextTitle isTiny={isTiny} isBig={isBig}>
+        <h1>Contact Us</h1>
+      </ContactFormTextTitle>
+      <TwoColumnContainer>
+        <DetailsContainer>
+          <div>
+            <DetailsLabel>☎ Give us a call</DetailsLabel>
+            <DetailsContent>1-844-483-8765</DetailsContent>
+          </div>
+          <div>
+            <DetailsLabel>📧 Send us an email</DetailsLabel>
+            <DetailsContent>info@vft.technology</DetailsContent>
+          </div>
+        </DetailsContainer>
+        <Formik
+          validationSchema={schema}
+          initialValues={{}}
+          onSubmit={(templateParams) => {
+            send('default_service', 'template_la2u6re', templateParams);
+          }}
+        >
+          {({ submitForm, isValid }) => (
+            <FormContainer
+              method="post"
+              netlify-honeypot="bot-field"
+              data-netlify-recaptcha="true"
+              data-netlify="true"
+              name="contact"
+            >
+              <input type="hidden" name="bot-field" />
+              <input type="hidden" name="form-name" value="contact" />
 
-	return (
-		<Card>
-				<ContactFormTextTitle isTiny={isTiny} isBig={isBig}>
-					<h1>Contact Us</h1>
-				</ContactFormTextTitle>
-				<TwoColumnContainer>
-					<DetailsContainer>
-						<div>
-							<DetailsLabel>☎ Give us a call</DetailsLabel>
-							<DetailsContent>1-844-483-8765</DetailsContent>
-						</div>
-						<div>
-							<DetailsLabel>📧 Send us an email</DetailsLabel>
-							<DetailsContent>info@vft.technology</DetailsContent>
-						</div>
-					</DetailsContainer>
-
-					<FormContainer
-						method="post"
-						netlify-honeypot="bot-field"
-						data-netlify-recaptcha="true"
-						data-netlify="true"
-						name="contact">
-						<input type="hidden" name="bot-field" />
-						<input type="hidden" name="form-name" value="contact" />
-
-						<FormItem>
-							<FormLabel htmlFor="name">Full name *</FormLabel>
-							<FormInput
-								type="text"
-								id="name"
-								name="name"
-								placeholder="eg. John Doe"
-								required
-								aria-required
-							/>
-						</FormItem>
-						<FormItem>
-							<FormLabel htmlFor="email">Your email *</FormLabel>
-							<FormInput
-								type="email"
-								id="email"
-								name="email"
-								placeholder="eg. example@email.com"
-								required
-								aria-required
-							/>
-						</FormItem>
-						<FormItem>
-							<FormLabel htmlFor="phone">Phone number</FormLabel>
-							<FormInput type="tel" id="phone" name="phone" placeholder="eg. 123-456-7890" />
-						</FormItem>
-						<FormItem>
-							<FormLabel htmlFor="message">Message *</FormLabel>
-							<FormTextArea
-								rows={5}
-								name="message"
-								id="message"
-								required
-								aria-required
-								placeholder="Hello! Write us a message here."></FormTextArea>
-						</FormItem>
-						<CTAButton type="submit">Submit Form</CTAButton>
-					</FormContainer>
-				</TwoColumnContainer>
-				</Card>
-	);
+              <FormItem>
+                <FormLabel htmlFor="name">Full name *</FormLabel>
+                <Field
+                  name="from_name"
+                  type="text"
+                  placeholder="eg. John Doe"
+                  required
+                  aria-require
+                  component={FormInput}
+                />
+              </FormItem>
+              <FormItem>
+                <FormLabel htmlFor="email">Your email *</FormLabel>
+                <Field
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="eg. example@email.com"
+                  required
+                  aria-required
+                  component={FormInput}
+                />
+              </FormItem>
+              <FormItem>
+                <FormLabel htmlFor="phone">Phone number</FormLabel>
+                <Field
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="eg. 123-456-7890"
+                  component={FormInput}
+                />
+              </FormItem>
+              <FormItem>
+                <FormLabel htmlFor="message">Message *</FormLabel>
+                <Field
+                  rows={5}
+                  name="message"
+                  id="message"
+                  required
+                  aria-required
+                  placeholder="Hello! Write us a message here."
+                  component={FormTextArea}
+                />
+              </FormItem>
+              <CTAButton type="submit" onClick={submitForm} disabled={!isValid}>
+                Submit Form
+              </CTAButton>
+            </FormContainer>
+          )}
+        </Formik>
+      </TwoColumnContainer>
+    </Card>
+  );
 };
 
 export default React.memo(ContactForm);
