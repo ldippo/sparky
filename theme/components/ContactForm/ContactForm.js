@@ -39,7 +39,7 @@ const ContactForm = () => {
                     React.createElement(DetailsContent, null, "info@vft.technology"))),
             React.createElement(Formik, { validationSchema: schema, initialValues: {}, onSubmit: (templateParams) => {
                     console.log('is this working', templateParams);
-                    send('default_service', 'template_la2u6re', templateParams).then((x) => console.log({ result: x }));
+                    send(process.env.GATSBY_EMAIL_SVC_ID || 'default_service', 'template_la2u6re', templateParams).then((x) => console.log({ result: x }));
                 } }, ({ submitForm, isValid, values }) => (React.createElement(React.Fragment, null,
                 React.createElement("pre", null, JSON.stringify(values, null, 4)),
                 React.createElement(FormContainer, null,
