@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
-
+import ReCAPTCHA from 'react-google-recaptcha';
 import Card from '../Card';
 
 import {
@@ -45,14 +45,30 @@ const FormInputFormik = React.memo(function FormInputFormik({
 const ContactForm = () => {
   const isTiny = useMediaQuery('only screen and (max-width: 768px)');
   const isBig = useMediaQuery('only screen and (min-width: 992px)');
-  const schema = yup.object().shape({
-    from_name: yup.string().required(),
-    message: yup.string().required(),
-    email: yup.string().email().required(),
-    phone: yup.string(),
-  });
+  const schema = React.useMemo(
+    () =>
+      yup.object().shape({
+        from_name: yup.string().required(),
+        message: yup.string().required(),
+        email: yup.string().email().required(),
+        phone: yup.string(),
+      }),
+    []
+  );
+  const [recaptchaKey, setRecaptcha] = React.useState<string | null>(null);
   React.useEffect(() => {
     init(process.env.GATSBY_EMAILKEY || '');
+  }, []);
+  const onSubmit = React.useCallback((templateParams) => {
+    console.log('is this working', templateParams);
+    send(
+      process.env.GATSBY_EMAIL_SVC_ID || 'default_service',
+      'template_la2u6re',
+      {
+        ...templateParams,
+        'g-recaptcha-response': recaptchaKey,
+      }
+    ).then((x) => console.log({ result: x }));
   }, []);
   return (
     <Card>
@@ -73,27 +89,11 @@ const ContactForm = () => {
         <Formik
           validationSchema={schema}
           initialValues={{}}
-          onSubmit={(templateParams) => {
-            console.log('is this working', templateParams);
-            send(
-              process.env.GATSBY_EMAIL_SVC_ID || 'default_service',
-              'template_la2u6re',
-              {
-                ...templateParams,
-                'g-recaptcha-response': grecaptcha.getResponse(),
-              }
-            ).then((x) => console.log({ result: x }));
-          }}
+          onSubmit={onSubmit}
         >
           {({ submitForm, isValid }) => (
             <>
               <FormContainer>
-                <div
-                  className="g-recaptcha"
-                  data-sitekey="6LfFgw0cAAAAABY2QhFXZO_6cFGgzXF-4ACBNik3"
-                >
-                  &nbsp;
-                </div>
                 <FormItem>
                   <FormLabel htmlFor="name">Full name *</FormLabel>
                   <FormInputFormik
@@ -127,10 +127,14 @@ const ContactForm = () => {
                     multi
                   />
                 </FormItem>
+                <ReCAPTCHA
+                  sitekey="6LfFgw0cAAAAABY2QhFXZO_6cFGgzXF-4ACBNik3"
+                  onChange={setRecaptcha}
+                />
                 <CTAButton
                   type="submit"
                   onClick={submitForm}
-                  disabled={!isValid}
+                  disabled={!isValid || !recaptchaKey}
                 >
                   Submit Form
                 </CTAButton>
