@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-var */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
@@ -39,7 +41,10 @@ const ContactForm = () => {
                     React.createElement(DetailsContent, null, "info@vft.technology"))),
             React.createElement(Formik, { validationSchema: schema, initialValues: {}, onSubmit: (templateParams) => {
                     console.log('is this working', templateParams);
-                    send(process.env.GATSBY_EMAIL_SVC_ID || 'default_service', 'template_la2u6re', templateParams).then((x) => console.log({ result: x }));
+                    send(process.env.GATSBY_EMAIL_SVC_ID || 'default_service', 'template_la2u6re', {
+                        ...templateParams,
+                        'g-recaptcha-response': grecaptcha.getResponse(),
+                    }).then((x) => console.log({ result: x }));
                 } }, ({ submitForm, isValid }) => (React.createElement(React.Fragment, null,
                 React.createElement(FormContainer, null,
                     React.createElement("div", { className: "g-recaptcha", "data-sitekey": "6LfFgw0cAAAAABY2QhFXZO_6cFGgzXF-4ACBNik3" }, "\u00A0"),

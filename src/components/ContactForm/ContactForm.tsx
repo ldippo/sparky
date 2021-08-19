@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-var */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { useMediaQuery } from '@react-hook/media-query';
@@ -24,6 +26,8 @@ import { CTAButton } from '../CTAButton/CTAButton.styles';
 import { Formik, Field, Form, useField } from 'formik';
 import * as yup from 'yup';
 import { init, send } from 'emailjs-com';
+
+declare var grecaptcha: any;
 
 const FormInputFormik = React.memo(function FormInputFormik({
   name,
@@ -74,7 +78,10 @@ const ContactForm = () => {
             send(
               process.env.GATSBY_EMAIL_SVC_ID || 'default_service',
               'template_la2u6re',
-              templateParams
+              {
+                ...templateParams,
+                'g-recaptcha-response': grecaptcha.getResponse(),
+              }
             ).then((x) => console.log({ result: x }));
           }}
         >
