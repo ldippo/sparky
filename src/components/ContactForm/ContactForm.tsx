@@ -148,7 +148,9 @@ const ContactForm = () => {
             )}
           </Formik>
         ) : (
-          <p>Your message was sent successfully.</p>
+          <FormContainer>
+            <p>Your message was sent successfully.</p>
+          </FormContainer>
         )}
       </TwoColumnContainer>
     </Card>

@@ -64,6 +64,7 @@ const ContactForm = () => {
                         React.createElement(FormLabel, { htmlFor: "message" }, "Message *"),
                         React.createElement(FormInputFormik, { rows: 5, name: "message", placeholder: "Hello! Write us a message here.", multi: true })),
                     React.createElement(ReCAPTCHA, { sitekey: "6LfFgw0cAAAAABY2QhFXZO_6cFGgzXF-4ACBNik3", onChange: setRecaptcha }),
-                    React.createElement(CTAButton, { type: "submit", onClick: submitForm, disabled: !isValid || !recaptchaKey }, "Submit Form")))))) : (React.createElement("p", null, "Your message was sent successfully.")))));
+                    React.createElement(CTAButton, { type: "submit", onClick: submitForm, disabled: !isValid || !recaptchaKey }, "Submit Form")))))) : (React.createElement(FormContainer, null,
+                React.createElement("p", null, "Your message was sent successfully."))))));
 };
 export default React.memo(ContactForm);
