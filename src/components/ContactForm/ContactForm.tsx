@@ -56,6 +56,7 @@ const ContactForm = () => {
     []
   );
   const [recaptchaKey, setRecaptcha] = React.useState<string | null>(null);
+  const [messageSent, setMessageSent] = React.useState(false);
   React.useEffect(() => {
     init(process.env.GATSBY_EMAILKEY || '');
   }, []);
@@ -69,7 +70,7 @@ const ContactForm = () => {
           ...templateParams,
           'g-recaptcha-response': recaptchaKey,
         }
-      ).then((x) => console.log({ result: x }));
+      ).then((x) => setMessageSent(true));
     },
     [recaptchaKey]
   );
@@ -89,62 +90,66 @@ const ContactForm = () => {
             <DetailsContent>info@vft.technology</DetailsContent>
           </div>
         </DetailsContainer>
-        <Formik
-          validationSchema={schema}
-          initialValues={{}}
-          onSubmit={onSubmit}
-        >
-          {({ submitForm, isValid }) => (
-            <>
-              <FormContainer>
-                <FormItem>
-                  <FormLabel htmlFor="name">Full name *</FormLabel>
-                  <FormInputFormik
-                    name="from_name"
-                    type="text"
-                    placeholder="eg. John Doe"
+        {!messageSent ? (
+          <Formik
+            validationSchema={schema}
+            initialValues={{}}
+            onSubmit={onSubmit}
+          >
+            {({ submitForm, isValid }) => (
+              <>
+                <FormContainer>
+                  <FormItem>
+                    <FormLabel htmlFor="name">Full name *</FormLabel>
+                    <FormInputFormik
+                      name="from_name"
+                      type="text"
+                      placeholder="eg. John Doe"
+                    />
+                  </FormItem>
+                  <FormItem>
+                    <FormLabel htmlFor="email">Your email *</FormLabel>
+                    <FormInputFormik
+                      type="email"
+                      name="email"
+                      placeholder="eg. example@email.com"
+                    />
+                  </FormItem>
+                  <FormItem>
+                    <FormLabel htmlFor="phone">Phone number</FormLabel>
+                    <FormInputFormik
+                      type="tel"
+                      name="phone"
+                      placeholder="eg. 123-456-7890"
+                    />
+                  </FormItem>
+                  <FormItem>
+                    <FormLabel htmlFor="message">Message *</FormLabel>
+                    <FormInputFormik
+                      rows={5}
+                      name="message"
+                      placeholder="Hello! Write us a message here."
+                      multi
+                    />
+                  </FormItem>
+                  <ReCAPTCHA
+                    sitekey="6LfFgw0cAAAAABY2QhFXZO_6cFGgzXF-4ACBNik3"
+                    onChange={setRecaptcha}
                   />
-                </FormItem>
-                <FormItem>
-                  <FormLabel htmlFor="email">Your email *</FormLabel>
-                  <FormInputFormik
-                    type="email"
-                    name="email"
-                    placeholder="eg. example@email.com"
-                  />
-                </FormItem>
-                <FormItem>
-                  <FormLabel htmlFor="phone">Phone number</FormLabel>
-                  <FormInputFormik
-                    type="tel"
-                    name="phone"
-                    placeholder="eg. 123-456-7890"
-                  />
-                </FormItem>
-                <FormItem>
-                  <FormLabel htmlFor="message">Message *</FormLabel>
-                  <FormInputFormik
-                    rows={5}
-                    name="message"
-                    placeholder="Hello! Write us a message here."
-                    multi
-                  />
-                </FormItem>
-                <ReCAPTCHA
-                  sitekey="6LfFgw0cAAAAABY2QhFXZO_6cFGgzXF-4ACBNik3"
-                  onChange={setRecaptcha}
-                />
-                <CTAButton
-                  type="submit"
-                  onClick={submitForm}
-                  disabled={!isValid || !recaptchaKey}
-                >
-                  Submit Form
-                </CTAButton>
-              </FormContainer>
-            </>
-          )}
-        </Formik>
+                  <CTAButton
+                    type="submit"
+                    onClick={submitForm}
+                    disabled={!isValid || !recaptchaKey}
+                  >
+                    Submit Form
+                  </CTAButton>
+                </FormContainer>
+              </>
+            )}
+          </Formik>
+        ) : (
+          <p>Your message was sent successfully.</p>
+        )}
       </TwoColumnContainer>
     </Card>
   );

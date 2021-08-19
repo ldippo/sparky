@@ -27,6 +27,7 @@ const ContactForm = () => {
         phone: yup.string(),
     }), []);
     const [recaptchaKey, setRecaptcha] = React.useState(null);
+    const [messageSent, setMessageSent] = React.useState(false);
     React.useEffect(() => {
         init(process.env.GATSBY_EMAILKEY || '');
     }, []);
@@ -35,7 +36,7 @@ const ContactForm = () => {
         send(process.env.GATSBY_EMAIL_SVC_ID || 'default_service', 'template_la2u6re', {
             ...templateParams,
             'g-recaptcha-response': recaptchaKey,
-        }).then((x) => console.log({ result: x }));
+        }).then((x) => setMessageSent(true));
     }, [recaptchaKey]);
     return (React.createElement(Card, null,
         React.createElement(ContactFormTextTitle, { isTiny: isTiny, isBig: isBig },
@@ -48,7 +49,7 @@ const ContactForm = () => {
                 React.createElement("div", null,
                     React.createElement(DetailsLabel, null, "\uD83D\uDCE7 Send us an email"),
                     React.createElement(DetailsContent, null, "info@vft.technology"))),
-            React.createElement(Formik, { validationSchema: schema, initialValues: {}, onSubmit: onSubmit }, ({ submitForm, isValid }) => (React.createElement(React.Fragment, null,
+            !messageSent ? (React.createElement(Formik, { validationSchema: schema, initialValues: {}, onSubmit: onSubmit }, ({ submitForm, isValid }) => (React.createElement(React.Fragment, null,
                 React.createElement(FormContainer, null,
                     React.createElement(FormItem, null,
                         React.createElement(FormLabel, { htmlFor: "name" }, "Full name *"),
@@ -63,6 +64,6 @@ const ContactForm = () => {
                         React.createElement(FormLabel, { htmlFor: "message" }, "Message *"),
                         React.createElement(FormInputFormik, { rows: 5, name: "message", placeholder: "Hello! Write us a message here.", multi: true })),
                     React.createElement(ReCAPTCHA, { sitekey: "6LfFgw0cAAAAABY2QhFXZO_6cFGgzXF-4ACBNik3", onChange: setRecaptcha }),
-                    React.createElement(CTAButton, { type: "submit", onClick: submitForm, disabled: !isValid || !recaptchaKey }, "Submit Form"))))))));
+                    React.createElement(CTAButton, { type: "submit", onClick: submitForm, disabled: !isValid || !recaptchaKey }, "Submit Form")))))) : (React.createElement("p", null, "Your message was sent successfully.")))));
 };
 export default React.memo(ContactForm);
