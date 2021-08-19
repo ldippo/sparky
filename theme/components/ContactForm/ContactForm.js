@@ -36,7 +36,7 @@ const ContactForm = () => {
             ...templateParams,
             'g-recaptcha-response': recaptchaKey,
         }).then((x) => console.log({ result: x }));
-    }, []);
+    }, [recaptchaKey]);
     return (React.createElement(Card, null,
         React.createElement(ContactFormTextTitle, { isTiny: isTiny, isBig: isBig },
             React.createElement("h1", null, "Contact Us")),

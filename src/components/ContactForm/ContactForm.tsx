@@ -59,17 +59,20 @@ const ContactForm = () => {
   React.useEffect(() => {
     init(process.env.GATSBY_EMAILKEY || '');
   }, []);
-  const onSubmit = React.useCallback((templateParams) => {
-    console.log('is this working', templateParams);
-    send(
-      process.env.GATSBY_EMAIL_SVC_ID || 'default_service',
-      'template_la2u6re',
-      {
-        ...templateParams,
-        'g-recaptcha-response': recaptchaKey,
-      }
-    ).then((x) => console.log({ result: x }));
-  }, []);
+  const onSubmit = React.useCallback(
+    (templateParams) => {
+      console.log('is this working', templateParams);
+      send(
+        process.env.GATSBY_EMAIL_SVC_ID || 'default_service',
+        'template_la2u6re',
+        {
+          ...templateParams,
+          'g-recaptcha-response': recaptchaKey,
+        }
+      ).then((x) => console.log({ result: x }));
+    },
+    [recaptchaKey]
+  );
   return (
     <Card>
       <ContactFormTextTitle isTiny={isTiny} isBig={isBig}>
