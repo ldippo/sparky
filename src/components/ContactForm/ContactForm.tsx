@@ -78,9 +78,8 @@ const ContactForm = () => {
             ).then((x) => console.log({ result: x }));
           }}
         >
-          {({ submitForm, isValid, values }) => (
+          {({ submitForm, isValid }) => (
             <>
-              <pre>{JSON.stringify(values, null, 4)}</pre>
               <FormContainer>
                 <div
                   className="g-recaptcha"

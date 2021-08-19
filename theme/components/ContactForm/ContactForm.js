@@ -40,8 +40,7 @@ const ContactForm = () => {
             React.createElement(Formik, { validationSchema: schema, initialValues: {}, onSubmit: (templateParams) => {
                     console.log('is this working', templateParams);
                     send(process.env.GATSBY_EMAIL_SVC_ID || 'default_service', 'template_la2u6re', templateParams).then((x) => console.log({ result: x }));
-                } }, ({ submitForm, isValid, values }) => (React.createElement(React.Fragment, null,
-                React.createElement("pre", null, JSON.stringify(values, null, 4)),
+                } }, ({ submitForm, isValid }) => (React.createElement(React.Fragment, null,
                 React.createElement(FormContainer, null,
                     React.createElement("div", { className: "g-recaptcha", "data-sitekey": "6LfFgw0cAAAAABY2QhFXZO_6cFGgzXF-4ACBNik3" }, "\u00A0"),
                     React.createElement(FormItem, null,
