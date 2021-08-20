@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { mq } from '../../styles/breakpoints';
 
-export const AppContainer: React.FC<{ templateKey?: string }> = styled.div(
+export const AppContainer: React.FC<{ templateKey?: string }> = styled('div')(
   ({ templateKey }) => ({
     display: 'flex',
     width: '100%',
@@ -24,7 +24,7 @@ export const MainContainer: React.FC<any> = React.memo(
   })
 );
 
-export const ContentContainer: React.FC<any> = styled.div(
+export const ContentContainer: React.FC<any> = styled('div')(
   ({ templateKey, isTiny }) => ({
     flex: 1,
     background: 'white',
@@ -64,7 +64,7 @@ export const MarkDownContainer = styled<any>(motion.div)(({ flex }) => ({
   },
 }));
 
-export const ImageContainer = styled.div(
+export const ImageContainer = styled('div')(
   ({ imgSrc, bgColor }: { imgSrc: string; bgColor?: string }) => ({
     flex: 2,
     height: '100%',

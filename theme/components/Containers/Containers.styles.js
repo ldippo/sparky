@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import React from 'react';
 import { motion } from 'framer-motion';
 import { mq } from '../../styles/breakpoints';
-export const AppContainer = styled.div(({ templateKey }) => ({
+export const AppContainer = styled('div')(({ templateKey }) => ({
     display: 'flex',
     width: '100%',
     height: '100%',
@@ -17,7 +17,7 @@ export const MainContainer = React.memo(styled.div({
     display: 'flex',
     maxHeight: '100%',
 }));
-export const ContentContainer = styled.div(({ templateKey, isTiny }) => ({
+export const ContentContainer = styled('div')(({ templateKey, isTiny }) => ({
     flex: 1,
     background: 'white',
     display: 'flex',
@@ -53,7 +53,7 @@ export const MarkDownContainer = styled(motion.div)(({ flex }) => ({
         textAlign: 'left',
     },
 }));
-export const ImageContainer = styled.div(({ imgSrc, bgColor }) => ({
+export const ImageContainer = styled('div')(({ imgSrc, bgColor }) => ({
     flex: 2,
     height: '100%',
     width: '100%',
