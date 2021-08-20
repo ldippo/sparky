@@ -24,13 +24,26 @@ export const SideNavItem = styled(motion.div)(({ selected }: any) => ({
   },
 }));
 
-export const StyledSideNav: React.FC<any> = styled(motion.div)`
-  padding-top: 100px;
-  position: absolute;
-  max-width: 200px;
-  width: 200px;
-  height: 100%;
-  z-index: 99;
-  visibility: ${({ tiny }: any) => (tiny ? 'hidden' : 'visible')};
-  pointer-events: ${({ tiny }: any) => (tiny ? 'none' : 'inherit')};
-`;
+export const StyledSideNav: React.FC<any> = function StyledSideNav({
+  tiny,
+  children,
+  ...props
+}) {
+  return (
+    <motion.div
+      style={{
+        paddingTop: 100,
+        position: 'absolute',
+        maxWidth: 200,
+        width: 200,
+        height: '100%',
+        zIndex: 99,
+        visibility: tiny ? 'hidden' : 'visible',
+        pointerEvents: tiny ? 'none' : 'inherit',
+      }}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+};

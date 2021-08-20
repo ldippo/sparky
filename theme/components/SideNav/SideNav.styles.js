@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
 export const SideNavItem = styled(motion.div)(({ selected }) => ({
@@ -20,13 +21,15 @@ export const SideNavItem = styled(motion.div)(({ selected }) => ({
         borderLeft: !selected ? `solid 1px currentColor` : undefined,
     },
 }));
-export const StyledSideNav = styled(motion.div) `
-  padding-top: 100px;
-  position: absolute;
-  max-width: 200px;
-  width: 200px;
-  height: 100%;
-  z-index: 99;
-  visibility: ${({ tiny }) => (tiny ? 'hidden' : 'visible')};
-  pointer-events: ${({ tiny }) => (tiny ? 'none' : 'inherit')};
-`;
+export const StyledSideNav = function StyledSideNav({ tiny, children, ...props }) {
+    return (React.createElement(motion.div, Object.assign({ style: {
+            paddingTop: 100,
+            position: 'absolute',
+            maxWidth: 200,
+            width: 200,
+            height: '100%',
+            zIndex: 99,
+            visibility: tiny ? 'hidden' : 'visible',
+            pointerEvents: tiny ? 'none' : 'inherit',
+        } }, props), children));
+};
