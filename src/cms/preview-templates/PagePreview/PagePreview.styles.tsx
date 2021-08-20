@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import { Global, css } from '@emotion/react';
+import { Global } from '@emotion/react';
+import css from '@emotion/css';
 export const GlobalStyles: React.FC = () => (
   <Global
     styles={css`
@@ -47,7 +48,7 @@ export const GlobalStyles: React.FC = () => (
     `}
   />
 );
-export const PreviewContainer = styled.div`
+export const PreviewContainer = styled('div')`
   height: 100vh;
   & .SubGrid {
     height: auto;

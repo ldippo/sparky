@@ -16,7 +16,7 @@ export const AppContainer: React.FC<{ templateKey?: string }> = styled('div')(
 );
 
 export const MainContainer: React.FC<any> = React.memo(
-  styled.div({
+  styled('div')({
     flex: 1,
     width: '100%',
     display: 'flex',
@@ -77,7 +77,7 @@ export const ImageContainer = styled('div')(
   })
 );
 
-export const SplashContentContainer = styled.div({
+export const SplashContentContainer = styled('div')({
   width: '100%',
   height: '100%',
   flex: 1,

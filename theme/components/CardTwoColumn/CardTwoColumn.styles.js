@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { mq } from '../../styles/breakpoints';
-export const TwoColumnContainer = styled.div({
+export const TwoColumnContainer = styled('div')({
     display: 'flex',
     justifyContent: 'center',
     flexDirection: 'column-reverse',
@@ -8,7 +8,7 @@ export const TwoColumnContainer = styled.div({
         flexDirection: 'row',
     },
 });
-export const DetailsContainer = styled.div({
+export const DetailsContainer = styled('div')({
     margin: '2rem 2rem',
     borderTop: '1px solid darkgray',
     padding: '2rem 0',

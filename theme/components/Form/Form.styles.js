@@ -11,7 +11,7 @@ export const FormContainer = styled(Form)({
         width: '60%',
     },
 });
-export const FormItem = styled.div({
+export const FormItem = styled('div')({
     textAlign: 'left',
     marginBottom: '1rem',
 });

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /// <reference types="@emotion/react/types/css-prop" />
 import React from 'react';
-import { Global, css } from '@emotion/react';
+import { Global } from '@emotion/react';
+import css from '@emotion/css';
 import { useMediaQuery } from '@react-hook/media-query';
 import SectionItem from './SectionItem';
 import ContactForm from './ContactForm';

@@ -1,6 +1,6 @@
 import React from 'react';
 import GatLink from 'gatsby-link';
-import { css } from '@emotion/react';
+import css from '@emotion/css';
 import LogoContainer from '../Logo/LogoContainer.styles';
 import SVGLogo from '../Logo/SVGLogo';
 import { CTAButtonLarge } from '../CTAButton/CTAButton.styles';

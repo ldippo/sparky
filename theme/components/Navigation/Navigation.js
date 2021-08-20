@@ -7,7 +7,7 @@ import { TinyNav, Nav, DrawerNav, DrawerLinks, LinkContainer, Hamburger, Links, 
 import LogoContainer from '../Logo/LogoContainer.styles';
 import Link from '../Link/Link';
 import SVGLogo from '../Logo/SVGLogo';
-import { css } from '@emotion/react';
+import css from '@emotion/css';
 const Navigation = function Navigation({ navData, contrastColors, }) {
     const isTiny = useMediaQuery('only screen and (max-width: 768px)');
     const [openDrawer, setOpenDrawer] = React.useState(false);

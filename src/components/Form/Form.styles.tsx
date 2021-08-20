@@ -13,7 +13,7 @@ export const FormContainer = styled(Form)({
   },
 });
 
-export const FormItem = styled.div({
+export const FormItem = styled('div')({
   textAlign: 'left',
   marginBottom: '1rem',
 });

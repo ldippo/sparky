@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import { mq } from '../../styles/breakpoints';
-export const SubGrid = styled.div `
+export const SubGrid = styled('div') `
   width: 100%;
   height: 100%;
   min-height: 100%;
@@ -8,7 +8,7 @@ export const SubGrid = styled.div `
   display: flex;
   flex-direction: column;
 `;
-export const BigSubGridInfo = styled.div `
+export const BigSubGridInfo = styled('div') `
   padding-top: 48px;
   display: flex;
   flex: 1;
@@ -22,7 +22,7 @@ export const BigSubGridInfo = styled.div `
     margin: 0 18rem;
   }
 `;
-export const TinySubGridInfo = styled.div `
+export const TinySubGridInfo = styled('div') `
   flex: 1;
   height: 100%;
   padding-top: 30px;

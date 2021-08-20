@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import { Global, css } from '@emotion/react';
+import { Global } from '@emotion/react';
+import css from '@emotion/css';
 export const GlobalStyles = () => (React.createElement(Global, { styles: css `
       @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
       html,
@@ -43,7 +44,7 @@ export const GlobalStyles = () => (React.createElement(Global, { styles: css `
         }
       }
     ` }));
-export const PreviewContainer = styled.div `
+export const PreviewContainer = styled('div') `
   height: 100vh;
   & .SubGrid {
     height: auto;

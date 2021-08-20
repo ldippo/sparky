@@ -11,7 +11,7 @@ export const AppContainer = styled('div')(({ templateKey }) => ({
     position: templateKey === 'cardPage' ? 'relative' : 'fixed',
     minHeight: templateKey === 'cardPage' ? '100vh' : '',
 }));
-export const MainContainer = React.memo(styled.div({
+export const MainContainer = React.memo(styled('div')({
     flex: 1,
     width: '100%',
     display: 'flex',
@@ -63,7 +63,7 @@ export const ImageContainer = styled('div')(({ imgSrc, bgColor }) => ({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
 }));
-export const SplashContentContainer = styled.div({
+export const SplashContentContainer = styled('div')({
     width: '100%',
     height: '100%',
     flex: 1,

@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const BackgroundVideoContainer = styled.div({
+export const BackgroundVideoContainer = styled('div')({
   flex: 2,
   height: '100%',
   minHeight: 300,
@@ -10,7 +10,7 @@ export const BackgroundVideoContainer = styled.div({
   width: '100%',
 });
 
-export const BGVideoContent = styled.div(
+export const BGVideoContent = styled('div')(
   ({ bgColor }: { bgColor?: string }) => ({
     position: 'absolute',
     top: 0,
