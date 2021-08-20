@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/// <reference types="@emotion/react/types/css-prop" />
 import React from 'react';
 import { Global, css } from '@emotion/react';
 import { useMediaQuery } from '@react-hook/media-query';
@@ -35,7 +36,9 @@ const Layout = React.memo(function Layout({ navData, sectionData, templateKey, }
     })), [sectionData]);
     const carouselRef = React.useRef();
     const isTiny = useMediaQuery('only screen and (max-width: 768px)');
-    return (React.createElement(React.Fragment, null,
+    return (React.createElement("div", { css: css `
+        margin: 0;
+      ` },
         React.createElement(Helmet, null,
             React.createElement("script", { src: "https://www.google.com/recaptcha/api.js", async: true, defer: true }),
             React.createElement("script", { async: true, src: "https://www.googletagmanager.com/gtag/js?id=G-ESEEVB8WVJ" }),
@@ -75,9 +78,11 @@ const Layout = React.memo(function Layout({ navData, sectionData, templateKey, }
         ` }),
         React.createElement(AppContainer, { templateKey: templateKey },
             React.createElement(Navigation, { navData: navData, contrastColors: contrastColors }),
-            React.createElement(MainContainer, null, templateKey === 'home' ? (React.createElement(SplashView, { videoSrc: "https://vftassets.s3.amazonaws.com/VFT_Animation.mp4", overlayColor: "rgba(0,0,0,0.65)" })) : templateKey === 'cardPage' ? (React.createElement(ContactForm, null)) : (React.createElement(React.Fragment, null,
-                sectionItems.length > 1 ? (React.createElement(SideNav, { selectedIdx: selectedSection, navItems: navItems, contrastColors: contrastColors })) : null,
-                React.createElement(ContentContainer, { templateKey: templateKey, isTiny: isTiny }, sectionItems.length && !isTiny ? (React.createElement(Carousel, { ref: carouselRef, curPage: selectedSection }, sectionItems.map((section) => (React.createElement(SectionItem, { section: section, key: section.title }))))) : sectionItems.length ? (sectionItems.map((section) => (React.createElement(SectionItem, { section: section, key: section.title })))) : null)))),
+            React.createElement(MainContainer, null,
+                React.createElement("div", { style: { display: 'none' } }, count),
+                templateKey === 'home' ? (React.createElement(SplashView, { videoSrc: "https://vftassets.s3.amazonaws.com/VFT_Animation.mp4", overlayColor: "rgba(0,0,0,0.65)" })) : templateKey === 'cardPage' ? (React.createElement(ContactForm, null)) : (React.createElement(React.Fragment, null,
+                    sectionItems.length > 1 ? (React.createElement(SideNav, { selectedIdx: selectedSection, navItems: navItems, contrastColors: contrastColors })) : null,
+                    React.createElement(ContentContainer, { templateKey: templateKey, isTiny: isTiny }, sectionItems.length && !isTiny ? (React.createElement(Carousel, { ref: carouselRef, curPage: selectedSection }, sectionItems.map((section) => (React.createElement(SectionItem, { section: section, key: section.title }))))) : sectionItems.length ? (sectionItems.map((section) => (React.createElement(SectionItem, { section: section, key: section.title })))) : null)))),
             React.createElement(Footer, null))));
 });
 export default Layout;

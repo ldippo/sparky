@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/// <reference types="@emotion/react/types/css-prop" />
 import React from 'react';
-import { Global, css, CacheProvider } from '@emotion/react';
+import { Global, css } from '@emotion/react';
 import { useMediaQuery } from '@react-hook/media-query';
 import { SectionFragment } from '../templates/queryInfo.gql';
 import SectionItem from './SectionItem';
@@ -81,7 +82,11 @@ const Layout = React.memo(function Layout({
   const isTiny = useMediaQuery('only screen and (max-width: 768px)');
 
   return (
-    <>
+    <div
+      css={css`
+        margin: 0;
+      `}
+    >
       <Helmet>
         <script
           src="https://www.google.com/recaptcha/api.js"
@@ -135,6 +140,7 @@ const Layout = React.memo(function Layout({
       <AppContainer templateKey={templateKey}>
         <Navigation navData={navData} contrastColors={contrastColors} />
         <MainContainer>
+          <div style={{ display: 'none' }}>{count}</div>
           {templateKey === 'home' ? (
             <SplashView
               videoSrc="https://vftassets.s3.amazonaws.com/VFT_Animation.mp4"
@@ -170,7 +176,7 @@ const Layout = React.memo(function Layout({
         </MainContainer>
         <Footer />
       </AppContainer>
-    </>
+    </div>
   );
 });
 export default Layout;
