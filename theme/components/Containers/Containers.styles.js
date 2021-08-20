@@ -13,6 +13,7 @@ export const AppContainer = styled.div(({ templateKey }) => ({
 }));
 export const MainContainer = React.memo(styled.div({
     flex: 1,
+    width: '100%',
     display: 'flex',
     maxHeight: '100%',
 }));

@@ -18,9 +18,6 @@ import {
 import { Maybe } from '../generated/graphql';
 import { Helmet } from 'react-helmet';
 
-// eslint-disable-next-line no-var
-declare var dataLayer: any;
-
 export interface SectionItemProps {
   title: Maybe<string> | undefined;
   superText: Maybe<string> | undefined;
@@ -39,6 +36,10 @@ const Layout = React.memo(function Layout({
   sectionData: SectionFragment[];
   templateKey: string;
 }) {
+  const [count, setCount] = React.useState(0);
+  React.useEffect(() => {
+    setCount((c) => c + 1);
+  }, []);
   const [selectedSection, setSelectedSection] = React.useState(0);
 
   const contrastColors = ['white', 'black'];
@@ -78,13 +79,7 @@ const Layout = React.memo(function Layout({
 
   const carouselRef = React.useRef<any>();
   const isTiny = useMediaQuery('only screen and (max-width: 768px)');
-  // function initAnalytics(dataLayer: any[]) {
-  //   function gtag(...args: any) {
-  //     dataLayer.push(...args);
-  //   }
-  //   gtag('js', new Date());
-  //   gtag('config', 'G-ESEEVB8WVJ');
-  // }
+
   return (
     <>
       <Helmet>
@@ -107,9 +102,6 @@ const Layout = React.memo(function Layout({
   gtag('config', 'G-ESEEVB8WVJ');
   `}
         </script>
-        {/* {((window as any).dataLayer = (window as any).dataLayer || [])}
-          {initAnalytics(dataLayer)} */}
-        {/* </script> */}
       </Helmet>
       <Global
         styles={css`
@@ -171,9 +163,7 @@ const Layout = React.memo(function Layout({
                   sectionItems.map((section) => (
                     <SectionItem section={section} key={section.title} />
                   ))
-                ) : (
-                  <div />
-                )}
+                ) : null}
               </ContentContainer>
             </>
           )}

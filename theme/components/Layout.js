@@ -12,6 +12,10 @@ import Navigation from './Navigation';
 import { AppContainer, MainContainer, ContentContainer, } from './Containers/Containers.styles';
 import { Helmet } from 'react-helmet';
 const Layout = React.memo(function Layout({ navData, sectionData, templateKey, }) {
+    const [count, setCount] = React.useState(0);
+    React.useEffect(() => {
+        setCount((c) => c + 1);
+    }, []);
     const [selectedSection, setSelectedSection] = React.useState(0);
     const contrastColors = ['white', 'black'];
     const navItems = React.useMemo(() => sectionData.map(({ title }, i) => ({
@@ -31,13 +35,6 @@ const Layout = React.memo(function Layout({ navData, sectionData, templateKey, }
     })), [sectionData]);
     const carouselRef = React.useRef();
     const isTiny = useMediaQuery('only screen and (max-width: 768px)');
-    // function initAnalytics(dataLayer: any[]) {
-    //   function gtag(...args: any) {
-    //     dataLayer.push(...args);
-    //   }
-    //   gtag('js', new Date());
-    //   gtag('config', 'G-ESEEVB8WVJ');
-    // }
     return (React.createElement(React.Fragment, null,
         React.createElement(Helmet, null,
             React.createElement("script", { src: "https://www.google.com/recaptcha/api.js", async: true, defer: true }),
@@ -80,7 +77,7 @@ const Layout = React.memo(function Layout({ navData, sectionData, templateKey, }
             React.createElement(Navigation, { navData: navData, contrastColors: contrastColors }),
             React.createElement(MainContainer, null, templateKey === 'home' ? (React.createElement(SplashView, { videoSrc: "https://vftassets.s3.amazonaws.com/VFT_Animation.mp4", overlayColor: "rgba(0,0,0,0.65)" })) : templateKey === 'cardPage' ? (React.createElement(ContactForm, null)) : (React.createElement(React.Fragment, null,
                 sectionItems.length > 1 ? (React.createElement(SideNav, { selectedIdx: selectedSection, navItems: navItems, contrastColors: contrastColors })) : null,
-                React.createElement(ContentContainer, { templateKey: templateKey, isTiny: isTiny }, sectionItems.length && !isTiny ? (React.createElement(Carousel, { ref: carouselRef, curPage: selectedSection }, sectionItems.map((section) => (React.createElement(SectionItem, { section: section, key: section.title }))))) : sectionItems.length ? (sectionItems.map((section) => (React.createElement(SectionItem, { section: section, key: section.title })))) : (React.createElement("div", null)))))),
+                React.createElement(ContentContainer, { templateKey: templateKey, isTiny: isTiny }, sectionItems.length && !isTiny ? (React.createElement(Carousel, { ref: carouselRef, curPage: selectedSection }, sectionItems.map((section) => (React.createElement(SectionItem, { section: section, key: section.title }))))) : sectionItems.length ? (sectionItems.map((section) => (React.createElement(SectionItem, { section: section, key: section.title })))) : null)))),
             React.createElement(Footer, null))));
 });
 export default Layout;
